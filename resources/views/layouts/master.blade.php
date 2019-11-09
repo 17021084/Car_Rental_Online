@@ -69,6 +69,7 @@
 <div id="back-top" class="back-top"> <a href="#top"><i class="fa fa-angle-up" aria-hidden="true"></i> </a> </div>
 <!--/Back to top--> 
 
+
 <!--Login-Form -->
 
 <div class="modal fade" id="loginform">
@@ -112,8 +113,8 @@
 
 
 
-<!--Register-Form -->
 
+<!--Register-Form -->
 
 <script>
 function checkAvailability() {
@@ -191,6 +192,7 @@ return true;
 </div>
 <!--/Register-Form --> 
 
+
 <!--Forgot-password-Form -->
   <script type="text/javascript">
 function valid()
@@ -245,17 +247,19 @@ return true;
   </div>
 </div><!--/Forgot-password-Form --> 
 
+
+
 <!-- Scripts --> 
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script> 
-<script src="assets/js/interface.js"></script> 
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script> 
+<script src="js/interface.js"></script> 
 <!--Switcher-->
-<script src="assets/switcher/js/switcher.js"></script>
+<script src="switcher/js/switcher.js"></script>
 <!--bootstrap-slider-JS--> 
-<script src="assets/js/bootstrap-slider.min.js"></script> 
+<script src="js/bootstrap-slider.min.js"></script> 
 <!--Slider-JS--> 
-<script src="assets/js/slick.min.js"></script> 
-<script src="assets/js/owl.carousel.min.js"></script>
+<script src="js/slick.min.js"></script> 
+<script src="js/owl.carousel.min.js"></script>
 
 </body>
 
