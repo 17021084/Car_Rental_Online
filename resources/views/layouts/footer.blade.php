@@ -8,10 +8,11 @@
             <ul>
   
           
-            <li><a href="page.php?type=aboutus">About Us</a></li>
-              <li><a href="page.php?type=faqs">FAQs</a></li>
-              <li><a href="page.php?type=privacy">Privacy</a></li>
-            <li><a href="page.php?type=terms">Terms of use</a></li>
+            <li><a href="/aboutus">About Us</a></li>
+              <li><a href="/faqs">FAQs</a></li>
+              <li><a href="privacy">Privacy</a></li>
+            <li><a href="/term">Terms of use</a></li>
+            {{-- viet sau --}}
                  <li><a href="admin/">Admin Login</a></li>
             </ul>
           </div>
@@ -47,7 +48,7 @@
             </div>
           </div>
           <div class="col-md-6 col-md-pull-6">
-            <p class="copy-right">Copyright &copy; 2017 Car Rental Portal. All Rights Reserved</p>
+            <p class="copy-right"> &copy; Assignment web develop </p>
           </div>
         </div>
       </div>

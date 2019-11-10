@@ -31,3 +31,10 @@ Route::get('/faqs', function () {
 Route::get('/contactus', function () {
     return view('page.contactus');
 });
+Route::get('/term', function () {
+    return view('page.termofuse');
+});
+Route::get('/privacy', function () {
+    return view('page.privacypolicy');
+});
+
