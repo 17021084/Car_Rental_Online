@@ -1,4 +1,4 @@
-@extends('layouts.master') 
+@extends('layouts.master')
 
 {{-- 
     trong thằng master sẽ include 2 file php là header và footer

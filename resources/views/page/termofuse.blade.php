@@ -1,5 +1,4 @@
 @extends('layouts.master')
-
 @section('content')
     <!-- Term of Use--->
     <section class="page-header aboutus_page">

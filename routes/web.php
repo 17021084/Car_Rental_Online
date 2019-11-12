@@ -38,3 +38,21 @@ Route::get('/privacy', function () {
     return view('page.privacypolicy');
 });
 
+/*
+// lưu một cái user
+Route::get('model/user', function () {
+    // khởi tạo class user 
+    $user = new App\User();
+    $user->name='passtu1den8';
+    $user->email='erina@gmail';
+    $user->password=bcrypt('12345678'); //mã hóa mật khẩu
+    $user->save();
+    echo "đã save()";
+    
+});
+
+*/
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -37,7 +37,7 @@
 
 <!-- Start Switcher -->
 
-@include('layouts.switch')
+{{-- @include('layouts.switch') --}}
 
 <!-- /Switcher -->  
         
@@ -115,7 +115,7 @@
 
 
 <!--Register-Form -->
-
+{{-- 
 <script>
 function checkAvailability() {
 $("#loaderIcon").show();
@@ -189,12 +189,12 @@ return true;
       </div>
     </div>
   </div>
-</div>
+</div> --}}
 <!--/Register-Form --> 
 
 
 <!--Forgot-password-Form -->
-  <script type="text/javascript">
+{{-- <script type="text/javascript">
 function valid()
 {
 if(document.chngpwd.newpassword.value!= document.chngpwd.confirmpassword.value)
@@ -245,7 +245,8 @@ return true;
       </div>
     </div>
   </div>
-</div><!--/Forgot-password-Form --> 
+</div> --}}
+<!--/Forgot-password-Form --> 
 
 
 
