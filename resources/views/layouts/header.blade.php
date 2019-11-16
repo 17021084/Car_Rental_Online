@@ -45,11 +45,14 @@
             <li class="dropdown"> 
                 <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fa fa-user-circle" aria-hidden="true"></i> 
-                <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-                <ul class="dropdown-menu">
+                
+                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>  
+                {{-- <ul class="dropdown-menu">
                   <li class="nav-item"> <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
                   @if (Route::has('register')) <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>@endif                                   
-                </ul>
+                </ul> --}}
+
+
             </li>  
 
              @else
@@ -66,37 +69,6 @@
           
        
         </div>
-
-
-
-
-{{-- 
-        <div class="user_login">
-          <ul>
-            <li class="dropdown"> 
-                <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fa fa-user-circle" aria-hidden="true"></i> 
-                <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-            
-                <ul class="dropdown-menu">
-                  @guest
-                  
-                  <li class="nav-item"> <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
-                  @if (Route::has('register')) <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
-                  @endif                  
-                  @else
-                    <li >
-                        <a  href="/home"  >
-                            {{ Auth::user()->name }} 
-                          </a>    
-                    </li>
-                  @endguest
-                </ul>
-            </li>
-          </ul>
-        </div> --}}
-
-
 
 
 
