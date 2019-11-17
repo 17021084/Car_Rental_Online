@@ -1,23 +1,14 @@
 <footer>
-    <div class="footer-top">
+    {{-- <div class="footer-top">
       <div class="container">
         <div class="row">
         
           <div class="col-md-6">
-            <h6>About Us</h6>
-            <ul>
-  
-          
-            <li><a href="/aboutus">About Us</a></li>
-              <li><a href="/faqs">FAQs</a></li>
-              <li><a href="privacy">Privacy</a></li>
-            <li><a href="/term">Terms of use</a></li>
-            {{-- viet sau --}}
-                 <li><a href="admin/">Admin Login</a></li>
-            </ul>
+           
+
           </div>
     
-          <div class="col-md-3 col-sm-6">
+          {{-- <div class="col-md-3 col-sm-6">
             <h6>Subscribe Newsletter</h6>
             <div class="newsletter-form">
               <form method="post">
@@ -28,10 +19,11 @@
               </form>
               <p class="subscribed-text">*We send great deals and latest auto news to our subscribed users very week.</p>
             </div>
-          </div>
+          </div> --}}
+
         </div>
       </div>
-    </div>
+    </div> 
     <div class="footer-bottom">
       <div class="container">
         <div class="row">
@@ -44,11 +36,21 @@
                 <li><a href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></li>
                 <li><a href="#"><i class="fa fa-google-plus-square" aria-hidden="true"></i></a></li>
                 <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+
               </ul>
+              <p class="copy-right"> &copy; Assignment of  web development'course </p>
             </div>
           </div>
           <div class="col-md-6 col-md-pull-6">
-            <p class="copy-right"> &copy; Assignment web develop </p>
+
+            {{--  sửa đoạn này  --}}
+              <h6 class="copy-right">About Us</h6> 
+              
+                   <a style=" padding-right :10px;" class="copy-right" href="privacy">Privacy</a>
+                   <a style=" padding-right :10px; " class="copy-right" href="/term">Terms of use</a>
+                   <a style=" padding-right :10px;" class="copy-right" href="admin/">Admin Login</a>
+              
+            
           </div>
         </div>
       </div>
