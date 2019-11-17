@@ -1,142 +1,154 @@
 @extends('layouts.master')
 
+<style>
+  #vehicle_image{
+    width: 400px;
+    height: 400px;
+
+  }
+  #desc{
+    
+    width: 400px;
+    height: 150px;
+    /* background-color: antiquewhite; */
+    overflow: auto;
+  }
+  
+
+</style>
+
+
 @section('content')
    <!--Listing-detail-->
-<section class="listing-detail">
-        <div class="container">
-          <div class="listing_detail_head row">
-            <div class="col-md-9">
-              <h2>BMW , Test Demoy</h2>
+
+<section class="listing-detail">       
+  <div class="container">
+         
+    <div class="listing_detail_head row">
+      <div class="col-md-9">
+          <h2 style="text-transform:capitalize">{{ $vehicle[0]->manufacturer }} </h2>
+      </div>
+      <div class="col-md-3">
+        <div class="price_info">
+           <p style="padding-bottom:20px" >${{ $vehicle[0]->price }}  </p>Per Day              
+        </div>
+      </div>
+    </div>
+
+
+     <div class="row">
+        <div class="col-md-9">
+           
+          <div class="row">
+            <div class="col-md-6">
+                <div id="vehicle_image">  
+                    <img  src="{{ $vehicle[0]->image_url }} " class="img-responsive" alt="image">
+                 </div>
             </div>
-            <div class="col-md-3">
-              <div class="price_info">
-                <p>$859 </p>Per Day
-               
-              </div>
+            <div class="col-md-6">
+                <div class="main_features">
+             
+                    <ul>
+                        <li> <i class="fa fa-calendar" aria-hidden="true"></i>
+                              <h5>{{ $vehicle[0]->year }} </h5>
+                              <p>Release Year</p>
+                        </li>
+                        <li> <i class="fa fa-beer" aria-hidden="true"></i>
+                              <h5>{{ $vehicle[0]->fuel }} </h5>
+                              <p>Fuel Type</p>
+                        </li>
+                      
+                        <li> 
+                          <i class="fa fa-user-plus" aria-hidden="true"></i>
+                          <h5>{{ $vehicle[0]->seats }} </h5>
+                          <p>Seats</p>
+                        </li>            
+                      </ul>                    
+                   </div>
+                   <h4 style="text-align:center;margin-top: 30px;"> <b>Descriptions </b> </h4>
+                   <div id="desc" >
+                      
+                      <p>{{ $vehicle[0]->desc }}</p> 
+                  </div>
+
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-9">
-              <div class="main_features">
-                <ul>
-                
-                  <li> <i class="fa fa-calendar" aria-hidden="true"></i>
-                    <h5>2015</h5>
-                    <p>Reg.Year</p>
-                  </li>
-                  <li> <i class="fa fa-cogs" aria-hidden="true"></i>
-                    <h5>CNG</h5>
-                    <p>Fuel Type</p>
-                  </li>
-             
-                  <li> <i class="fa fa-user-plus" aria-hidden="true"></i>
-                    <h5>4</h5>
-                    <p>Seats</p>
-                  </li>
-                </ul>
-              </div>
-              <div class="listing_more_info">
-                <div class="listing_detail_wrap"> 
-                  <!-- Nav tabs -->
-                  <ul class="nav nav-tabs gray-bg" role="tablist">
-                    <li role="presentation" class="active"><a href="#vehicle-overview " aria-controls="vehicle-overview" role="tab" data-toggle="tab">Vehicle Overview </a></li>
-                
-                    <li role="presentation"><a href="#accessories" aria-controls="accessories" role="tab" data-toggle="tab">Accessories</a></li>
-                  </ul>
-                  
-                  <!-- Tab panes -->
-                  <div class="tab-content"> 
-                    <!-- vehicle-overview -->
-                    <div role="tabpanel" class="tab-pane active" id="vehicle-overview">
-                      
-                      <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nam nibh. Nunc varius facilisis eros. Sed erat. In in velit quis arcu ornare laoreet. Curabitur adipiscing luctus massa. Integer ut purus ac augue commodo commodo. Nunc nec mi eu justo tempor consectetuer. Etiam vitae nisl. In dignissim lacus ut ante. Cras elit lectus, bibendum a, adipiscing vitae, commodo et, dui. Ut tincidunt tortor. Donec nonummy, enim in lacinia pulvinar, velit tellus scelerisque augue, ac posuere libero urna eget neque. Cras ipsum. Vestibulum pretium, lectus nec venenatis volutpat, purus lectus ultrices risus, a condimentum risus mi et quam. Pellentesque auctor fringilla neque. Duis eu massa ut lorem iaculis vestibulum. Maecenas facilisis elit sed justo. Quisque volutpat malesuada velit. </p>
-                    </div>
-                    
-                    
-                    <!-- Accessories -->
-                    <div role="tabpanel" class="tab-pane" id="accessories"> 
-                      <!--Accessories-->
-                      <table>
-                        <thead>
-                          <tr>
-                            <th colspan="2">Accessories</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>Air Conditioner</td>
-                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
-       </tr>
-      
-      <tr>
-      <td>AntiLock Braking System</td>
-      <td><i class="fa fa-check" aria-hidden="true"></i></td>
-                          </tr>
-      
-      <tr>
-      <td>Power Steering</td>
-      <td><i class="fa fa-check" aria-hidden="true"></i></td>
-      </tr>
-                         
-      
-      <tr>
-      
-      <td>Power Windows</td>
-      
-      <td><i class="fa fa-close" aria-hidden="true"></i></td>
-      </tr>
-                         
-       <tr>
-      <td>CD Player</td>
-      <td><i class="fa fa-check" aria-hidden="true"></i></td>
-      </tr>
-      
-      <tr>
-      <td>Leather Seats</td>
-      <td><i class="fa fa-close" aria-hidden="true"></i></td>
-      </tr>
-      
-      <tr>
-      <td>Central Locking</td>
-      <td><i class="fa fa-check" aria-hidden="true"></i></td>
-      </tr>
-      
-      <tr>
-      <td>Power Door Locks</td>
-      <td><i class="fa fa-check" aria-hidden="true"></i></td>
-                          </tr>
-                          <tr>
-      <td>Brake Assist</td>
-      <td><i class="fa fa-check" aria-hidden="true"></i></td>
-      </tr>
-      
-      <tr>
-      <td>Driver Airbag</td>
-      <td><i class="fa fa-check" aria-hidden="true"></i></td>
-       </tr>
-       
-       <tr>
-       <td>Passenger Airbag</td>
-       <td><i class="fa fa-check" aria-hidden="true"></i></td>
-      </tr>
-      
-      <tr>
-      <td>Crash Sensor</td>
-      <td><i class="fa fa-close" aria-hidden="true"></i></td>
-      </tr>
-      
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-                
-              </div>
          
-            </div>
+         
+        
+
+
+
+          <div class="listing_more_info">
+            <div > 
+                <h2 style="text-align:center"> Vehicle overviews </h2>
+              
+                <table class="table table-hover table-inverse table-responsive">
+                <thead class="thead-inverse">           
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td scope="row">  <b>Category </b> </td>
+                      <td style="text-transform:capitalize"> {{ $vehicle[0]->make }}  </td>
+                      
+                    </tr>
+                    <tr>
+                      <td scope="row">  <b>Type</b> </td>
+                      <td style="text-transform:capitalize"> {{ $vehicle[0]->type }}  </td>
+                      
+                    </tr>
+                    <tr>
+                      <td scope="row"> <b>Size</b>   </td>
+                      <td style="text-transform:capitalize">{{ $vehicle[0]->size }} </td>
+                      
+                    </tr>
+                    <tr>
+                      <td scope="row">  <b>Gear</b> </td>
+                      <td style="text-transform:capitalize"> {{ $vehicle[0]->transmission }}  </td>
+                      
+                    </tr>
+                    <tr>
+                      <td scope="row"><b>Cylinders</b> </td>
+                      <td style="text-transform:capitalize"> {{ $vehicle[0]->cylinders }} </td>
+                     
+                    </tr>
+                    <tr>
+                      <td scope="row"><b>Odometer</b> </td>
+                      <td style="text-transform:capitalize">{{ $vehicle[0]->odometer }} </td>
+                     
+                    </tr>
+                    <tr>
+                      <td scope="row"> <b>Drive (Dẫn động cầu trước , cầu sau , 2 cầu) </b> </td>
+                      <td style="text-transform:capitalize"> {{ $vehicle[0]->drive }} </td>
+                     
+                    </tr>
+                    <tr>
+                      <td scope="row"> <b>Paint color</b> </td>
+                      <td style="text-transform:capitalize">{{ $vehicle[0]->paint_color }} </td>
+                     
+                    </tr>
+                    <tr>
+                      <td scope="row"><b>Status</b>  </td>
+                      <td style="text-transform:capitalize">{{ $vehicle[0]->title_status }} </td>                 
+                    </tr>
+                  
+                  </tbody>
+              </table> 
+                 
+
+
+
+            </div>   
+
+         </div>   
+
+      </div>
             
+
+
+{{-- ================================================================================ --}}
             <!--Side-Bar-->
-            <aside class="col-md-3">
+            <aside   class="col-md-3">
             
               <div class="share_vehicle">
                 <p>Share: <a href="#"><i class="fa fa-facebook-square" aria-hidden="true"></i></a> <a href="#"><i class="fa fa-twitter-square" aria-hidden="true"></i></a> <a href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a> <a href="#"><i class="fa fa-google-plus-square" aria-hidden="true"></i></a> </p>
@@ -161,12 +173,27 @@
                               </form>
               </div>
             </aside>
+
+{{-- ====================================================== --}}
+
+
             <!--/Side-Bar--> 
           </div>
           
           <div class="space-20"></div>
           <div class="divider"></div>
           
+
+
+
+
+
+
+
+
+
+
+
           <!--Similar-Cars-->
           <div class="similar_cars">
             <h3>Similar Cars</h3>
@@ -214,6 +241,7 @@
           <!--/Similar-Cars--> 
           
         </div>
-      </section>
+      
+</section>      
       <!--/Listing-detail--> 
 @endsection

@@ -30,16 +30,25 @@ class PageController extends Controller
 
 
 
-    public function details( )
+    public function details( $id)
     {
         
-        // $vehicles=  VehiclesModel::where("vehicleID",'==',$id ); //json $id
-      
+        $vehicle =  VehiclesModel::where("vehicleID",$id )->get(); //json $id
+       
+        // kieu obj
+        // $car = json_decode($vehicle);
+        // echo($car[0]->price);
+        
+        
+        // kieeur mang
+        // $car = json_decode($vehicle,true);
+        // echo($car[0]['price']);
 
-          return view('page.details');
+        // json
+        // echo($vehicle[0]->year);
 
 
-
+        return view('page.details', ["vehicle" => $vehicle ] );
 
     }
 
