@@ -11,9 +11,26 @@ class VehiclesModel extends Model
     protected $primaryKey = 'vehicleID';
     public $timestamps = false; // nếu ko có createat và update at thì thôi để false
     
-
-
-
+  
+            
+        // vehicleID
+        // price
+        // year
+        // manufacturer
+        // make -> dong xe
+        // condition
+        // cylinders
+        // fuel
+        // odometer
+        // title_status
+        // transmission
+        // drive
+        // size
+        // seats
+        // type
+        // paint_color
+        // image_url
+        // desc
 
 
 }

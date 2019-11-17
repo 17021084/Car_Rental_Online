@@ -13,6 +13,17 @@
     
 --}}
 
+<style>
+/* .pagination {
+
+    margin-left:70%; 
+} */
+
+
+
+</style>
+
+
 
 
 @section('content')
@@ -50,7 +61,7 @@
             <div class="container">
                 <div class="section-header text-center">
                     <h2>Find the Best <span>CarForYou</span></h2>
-                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
+                    <p>Let's hit the Road with ours fancy Cars !! </p>
                 </div>
                 <div class="row"> 
                     
@@ -69,15 +80,19 @@
                  
                 {{-- ================================================================================== --}}
             
-                    {{-- vhl = vehicle --}}
+                    {{-- vhl = vehicle - hiển thị xe--}} 
                     @foreach ($vehicles as $vhl)  
                             <div class="col-list-3">
                                 <div class="recent-car-list">
-                                    <div class="car-info-box"> <a href="vehical-details.php?vhid=1"><img src="{{ $vhl->image_url }}" class="img-responsive" alt="image"></a>
+                                    <div class="car-info-box"> 
+                                        <a href="vehical-details.php?vhid=1"><img src="{{ $vhl->image_url }}" class="img-responsive" alt="image"></a>
+                                       
                                         <ul>
-                                            <li><i class="fa fa-car" aria-hidden="true"></i>{{ $vhl->fuel }}</li>
-                                            <li><i class="fa fa-calendar" aria-hidden="true"></i>{{ $vhl->make }}</li>
+                                            <li><i class="fa fa-beer" aria-hidden="true"></i>{{ $vhl->fuel }}</li>
+                                            <li><i class="fa fa-calendar" aria-hidden="true"></i>{{ $vhl->year }}</li>
+                                            
                                             <li><i class="fa fa-user" aria-hidden="true"></i>{{ $vhl->seats }} seats</li>
+                                            <li><i class="fa fa-cog" aria-hidden="true"></i>{{ $vhl->transmission }} </li>
                                         </ul>
                                     </div>
                         
@@ -92,19 +107,15 @@
                                 </div>
 
                              </div>
-
-
-
-
-
-
                     @endforeach
-            
+                            
 
                 </div>
             </div>
         </div>
-
+                <div >
+                     {{ $vehicles->links() }}
+                </div>
         </section>
         <!-- /Resent Cat --> 
         

@@ -1,20 +1,32 @@
+<style>
+  #logo:hover {
+     -ms-transform: scale(1.1); /* IE 9 */
+     -webkit-transform: scale(1.1); /* Safari 3-8 */
+     transform: scale(1.1); 
+  }
+
+
+
+</style>
+
+
+
 <header>
     <div class="default-header">
       <div class="container">
         <div class="row">
           <div class="col-sm-3 col-md-2">
-            <div class="logo"> <a href="index.php"><img src="images/logo.png" alt="image"/></a> </div>
+            <div class="logo"> <a href="index.php"><img id="logo" src="images/logo.png" alt="image"/></a></div>
           </div>
           <div class="col-sm-9 col-md-10">
             <div class="header_info">
               <div class="header_widgets">
-                <div class="circle_icon"> <i class="fa fa-envelope" aria-hidden="true"></i> </div>
+               
                 <p class="uppercase_text">For Support Mail us : </p>
-                <a href="mailto:info@example.com">carforrent@vnu.edu.vn</a> </div>
-              <div class="header_widgets">
-                <div class="circle_icon"> <i class="fa fa-phone" aria-hidden="true"></i> </div>
+                <a href="mailto:info@example.com"><i class="fa fa-envelope" aria-hidden="true"> Carforrent@vnu.edu.vn</i></a> </div>
+              <div class="header_widgets">                         
                 <p class="uppercase_text">Service Helpline Call Us: </p>
-                <a href="tel:61-1234-5678-09">+84 169 920 246</a> </div>
+                <a href="tel:61-1234-5678-09"><i class="fa fa-phone fa-1x" aria-hidden="true"> +84 169 920 246</i> </a> </div>
               <div class="social-follow">
                 
               </div>

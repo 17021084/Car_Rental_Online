@@ -20,6 +20,9 @@ Route::get('/term'       , 'PageController@term'      )->name('term');
 Route::get('/privacy'    , 'PageController@privacy'   )->name('privacy');
 Route::get('/faqs'      , 'PageController@faqs'       )->name('faqs');
 
+Route::get('/details'   , 'PageController@details'   )->name('details');
+
+
 
 // Route::get('/car' , function(){
 //     $vehicles = DB::table('vehicles')->limit(4)->get();
