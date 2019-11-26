@@ -47,7 +47,7 @@
                     <div class="banner_content">
                     <h1>Find the right car for you.</h1>
                     <p>We have more than a thousand cars for you to choose. </p>
-                    <a href="#" class="btn">Read More <span class="angle_arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></a> </div>
+                    <a href="{{ route('carlisting') }}" class="btn">Read More <span class="angle_arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></a> </div>
                 </div>
                 </div>
             </div>
@@ -85,7 +85,8 @@
                             <div class="col-list-3">
                                 <div class="recent-car-list">
                                     <div class="car-info-box"> 
-                                        <a href="vehical-details.php?vhid=1"><img src="{{ $vhl->image_url }}" class="img-responsive" alt="image"></a>
+                                        
+                                        <a href="details/{{$vhl->vehicleID }}" ><img src="{{ $vhl->image_url }}" class="img-responsive" alt="image"></a>
                                        
                                         <ul>
                                             <li><i class="fa fa-beer" aria-hidden="true"></i>{{ $vhl->fuel }}</li>
@@ -97,13 +98,22 @@
                                     </div>
                         
                                     <div class="car-title-m">
-                                        <h6 style="text-transform:capitalize" ><a href="vehical-details.php?vhid=1">  {{ $vhl->manufacturer }}  </a></h6>
-                                        <span class="price">${{ $vhl->price }} /Day</span> 
-                                    </div>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <h6 style="text-transform:capitalize" ><a href="details/{{$vhl->vehicleID }}" >  {{ $vhl->manufacturer }}  </a></h6>
+                                               <br>
+                                                <b style="text-transform:capitalize" > {{ $vhl->make }}</b>  
+                                            </div>
+                                            <div class="col-sm-6">                                              
+                                                <span class="price">${{ $vhl->price }} /Day</span> 
+                                            </div>
 
-                                        <div class="inventory_info_m">
-                                            {{-- <p>{{ $vhl->desc }}</p> --}}
                                         </div>
+                                        
+                                        
+                                    </div>
+                                    
+                                    
                                 </div>
 
                              </div>
@@ -174,7 +184,7 @@
         
         
                 <div class="testimonial-m">
-                    <div class="testimonial-img"> <img src="assets/images/cat-profile.png" alt="" /> </div>
+                    <div class="testimonial-img"> <img src="{{ asset('images/user.png') }}" alt="" /> </div>
                     <div class="testimonial-content">
                     <div class="testimonial-heading">
                         <h5>Anuj Kumar</h5>
@@ -185,13 +195,14 @@
                 
         
                 <div class="testimonial-m">
-                    <div class="testimonial-img"> <img src="assets/images/cat-profile.png" alt="" /> </div>
+                        <div class="testimonial-img"> <img src="{{ asset('images/user.png') }}" alt="" /> </div>
                     <div class="testimonial-content">
-                    <div class="testimonial-heading">
-                        <h5>Anuj Kumar</h5>
-                    <p>
-        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nam nibh. Nunc varius facilis</p>
-                    </div>
+                        <div class="testimonial-heading">
+                            <h5>Anuj Kumar</h5>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nam nibh. Nunc varius facilis
+                        </p>
+                        </div>
                 </div>
                 </div>
                         

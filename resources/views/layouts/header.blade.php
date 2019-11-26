@@ -1,8 +1,12 @@
 <style>
+
   #logo:hover {
      -ms-transform: scale(1.1); /* IE 9 */
      -webkit-transform: scale(1.1); /* Safari 3-8 */
      transform: scale(1.1); 
+  }
+  #logo {
+    transition: transform 1s;
   }
 
 
@@ -16,7 +20,9 @@
       <div class="container">
         <div class="row">
           <div class="col-sm-3 col-md-2">
-            <div class="logo"> <a href="index.php"><img id="logo" src="{{ asset('images/logo.png') }}" alt="image"/></a></div>
+           
+            <div class="logo"> <a href="{{ route('/') }}"><img id="logo" src="{{ asset('images/logo.png') }}" alt="image"/></a></div>
+          
           </div>
           <div class="col-sm-9 col-md-10">
             <div class="header_info">
@@ -112,6 +118,7 @@
 
     </div>
 </nav>
+
 <!-- Navigation end --> 
 
     

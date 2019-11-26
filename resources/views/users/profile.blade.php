@@ -9,26 +9,60 @@
     border-top-style: groove;   
 
 }
-
+.contact{
+    margin:0 auto;
+    width: 60%;
+}
 
 
 </style>
 
 @section('content')
 <div class="container">
-    <div >
-            <h1 style="text-align:center; margin-bottom:30px;" > My Booking </h1> 
+    
+    <div id="form" >
+            <h1 style="text-align:center; margin-bottom:30px;" > My Profile </h1> 
            
-            <div class="profile_info">
-                <h4> Sign up Day : 12/30/2019 </h4> 
-            
-                <h4>  Name :</h4> <input type="text" name="name" id="" placeholder="Name">
-                <h4> Date of Birth :</h4> <input type="date" name="name" id="" value="11/11/1999"> 
-                <h4> Email :</h4> <input type="email" name="name" id="" placeholder="abc">
-                <h4> number phone :</h4> <input type="text" name="name" id="" placeholder="Name">
-                
+           
+            <div class="contact">
+                    <h2> <b>Update Profile</b> </h2>
 
-            </div>
+                    <div>
+                        <i> Sign up at :</i> 15/11/1999 
+                    </div>
+
+                    <form action="/action_page.php">
+                      
+
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" class="form-control" id="Email" placeholder="Enter email" name="Email">
+                          </div>
+            
+                      <div class="form-group">
+                        <label for="Name">Name  :</label>
+                        <input type="text" class="form-control" id="Name" placeholder="Name" name="Name">
+                      </div>
+            
+                      <div class="form-group">
+                        <label for="Contact">Contact Number :</label>
+                        <input type="text" class="form-control" id="Contact" placeholder="Contact" name="Contact">
+                      </div>
+            
+                      <div class="form-group">
+                        <label for="dob">Date Of Birth :</label>
+                        <input type="date" class="form-control" id="dob" placeholder="15/11/1999" name="dob">
+                      </div>
+            
+                    
+                     
+                      <button type="submit" class="btn btn-primary">Submit</button>
+            
+            
+                    </form>
+                  </div>
+            
+
 
     </div>
 </div>
