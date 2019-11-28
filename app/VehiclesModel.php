@@ -17,7 +17,7 @@ class VehiclesModel extends Model
         // price
         // year
         // manufacturer
-        // make -> dong xe
+        // make -> dong xe category
         // condition
         // cylinders
         // fuel

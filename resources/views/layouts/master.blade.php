@@ -30,7 +30,7 @@
     <link href="{{ asset('https://fonts.googleapis.com/css?family=Lato:300,400,700,900') }}" rel="stylesheet"> 
 
   {{-- ajax  --}}
-  <script src="js/jquery.min.js"></script>
+  <script src="{{ asset('js/jquery.min.js') }}"></script>
   <meta name="csrf-token" content="{{ csrf_token() }}" />
 
 </head>
@@ -76,18 +76,7 @@
 
 
 
-<!-- Scripts --> 
 
-<script src="js/bootstrap.min.js"></script> 
-<script src="js/interface.js"></script> 
-
-<!--Switcher-->
-<script src="switcher/js/switcher.js"></script>
-<!--bootstrap-slider-JS--> 
-<script src="js/bootstrap-slider.min.js"></script> 
-<!--Slider-JS--> 
-<script src="js/slick.min.js"></script> 
-<script src="js/owl.carousel.min.js"></script>
 
 </body>
 

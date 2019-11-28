@@ -116,7 +116,7 @@
 
         $.ajax({
 
-           type:'POST',
+           type:'GET',
 
            url:'/ajaxRequest',
 

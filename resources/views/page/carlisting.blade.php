@@ -13,33 +13,37 @@
         <div class="col-md-9 col-md-push-3">
            <div class="result-sorting-wrapper">
               <div class="sorting-count">
-               <p><span><div id='numvehicles'>0 Listings</div>  </span></p>
+               <p><span><div id='numvehicles'>{{ count($vehicles) }} Listings</div>  </span></p>
               </div>
            </div>
            
               {{-- vehicle list  --}}
              <div id="vehicle-list">
-                <div  class="product-listing-m gray-bg">
-                    <div class="product-listing-img"><img src="admin/img/vehicleimages/knowledge_base_bg.jpg" class="img-responsive" alt="Image" /> </a> 
-                    </div>
-                    <div class="product-listing-content">
-                      <h5><a href="vehical-details.php?vhid=1">BMW , ytb rvtr</a></h5>
-                      <p class="list-price">$345345 Per Day</p>
-                      <ul>
-                        <li><i class="fa fa-user" aria-hidden="true"></i>7 seats</li>
-                        <li><i class="fa fa-window-minimize" aria-hidden="true"></i>3453 model</li>
-                        <li><i class="fa fa-car" aria-hidden="true"></i>Petrol</li>
-                        <li><i class="fa fa-beer" aria-hidden="true"></i>Petrol</li>
-                        <li><i class="fa fa-cog" aria-hidden="true"></i> transmission</li>
-                      
-                       
-                      </ul>
-                      <a href="vehical-details.php?vhid=1" class="btn">View Details <span class="angle_arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
-                    </div>
-                  </div>
+
+                @foreach ($vehicles as $item)
+                    <div  class="product-listing-m gray-bg">
+                        <div class="product-listing-img"><img src="{{ $item->image_url }}" class="img-responsive" alt="Image" /> </a> 
+                        </div>
+                        <div class="product-listing-content">
+                          <h5><a style="text-transform: capitalize;" href="vehical-details.php?vhid=1"> {{ $item->manufacturer }}</a></h5>
+                          <p class="list-price">${{ $item->price }} Per Day</p>
+                          <ul>
+                            <li><i  class="fa fa-user" aria-hidden="true"></i>{{ $item->seats }} Seats</li>
+                            <li><i style="text-transform: capitalize;" class="fa fa-window-minimize" aria-hidden="true"></i>{{ $item->make }}</li>
+                            <li><i style="text-transform: capitalize;" class="fa fa-car" aria-hidden="true"></i> {{ $item->type }} </li>
+                            <li><i style="text-transform: capitalize;" class="fa fa-beer" aria-hidden="true"></i>{{ $item->fuel }}</li>
+                            <li><i style="text-transform: capitalize;" class="fa fa-cog" aria-hidden="true"></i> {{ $item->transmission }}</li>
+                                                                      
+                          </ul>
+                          <a href="details/{{$item->vehicleID }}" class="btn">View Details <span class="angle_arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
+                          
+                        </div>
+                      </div>
     
-
-
+                  @endforeach
+                      <div >
+                          {{ $vehicles->links() }}
+                    </div>
              </div>
               
 
@@ -65,7 +69,7 @@
 
       <div class="sidebar_filter">
           {{-- action="{{ route('filtervehicle') }}" method="post" --}}
-        <form >  
+        <form action="{{ route('carlisting') }}" method="get" >  
             @csrf
           <div class="form-group select">   
                        
@@ -154,7 +158,7 @@
             </div>
 
             <div class="form-group select">
-               <select id="seats" class="form-control" name="drive">
+               <select id="seats" class="form-control" name="seats">
                  
                     <option value="" >Select Seats </option>
                            @foreach ($seats as $item)
@@ -197,58 +201,7 @@
 
       <!-- /Listing--> 
 
-      <script type="text/javascript" >
-
-         
-
-
-
-
-
-
-        $.ajaxSetup({
-     
-             headers: {
-     
-                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-     
-             }
-     
-         });
-     
-        $("#filtercar").click(function(e){
-     
-          e.preventDefault();
-          
-        //  get theo kieu ten the va thuoc tinh name
-         var manufacturer = $("select[name=manufacturer]").val(); 
-        // lay id
-         var category = $("#category").val(); 
-         var fuel = $("#fuel").val(); 
-         var type = $("#type").val(); 
-         var transmission = $("#transmission").val(); 
-         var seats = $("#seats").val(); 
-         
-          $.ajax({
-              type : 'POST',
-              url : '{{ route("filtervehicle") }}',
-              data :{ manufacturer: manufacturer,  category:category ,
-                fuel:fuel , type: type , transmission:transmission, seats:seats
-              },
-              success: function(data){
-                // do stm
-                document.getElementById('numvehicles').innerHTML=data.vehicle.length +' Listings';
-                alert(data.vehicle.length)
-
-              }
-
-          })
-         
-     
-        });
-     
-     
-     </script>
+    
 
 
 @endsection

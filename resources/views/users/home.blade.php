@@ -18,7 +18,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <h1 style="text-align:center; margin-bottom:30px;" > My Booking </h1> 
+            <h1 style="text-align:center; margin-bottom:30px;" > My Booking Home </h1> 
             <ul class = "list_rent" type="none" >
                 
                 {{-- xe dau tien --}}
@@ -88,11 +88,6 @@
     </div>
 </div>
 
-<script>
-    // viet script o day
-
-
-</script>
 
 
 

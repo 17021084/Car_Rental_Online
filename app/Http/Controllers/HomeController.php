@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+
+use Illuminate\Support\Facades\Schema;
 
 class HomeController extends Controller
 {
@@ -26,8 +29,22 @@ class HomeController extends Controller
         return view('users.home');
     }
     
-    public function profile()
+    
+    public function profile(Request $request)
     {
+            
+        // $email=$request['email'];
+        // $dob=$request['dob'];
+        // $name=$request['name'];
+        // $phone=$request['phone'];
+        // User::where('email',$email)->update( ['name'=>$name , 'dob'=>$dob,'phone'=>$phone]);
+        
         return view('users.profile');
+    }
+
+
+    public function testimonials(){
+
+        return view('users.testimonials');
     }
 }

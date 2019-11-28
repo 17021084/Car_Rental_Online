@@ -46,9 +46,11 @@
            
           <div class="row">
             <div class="col-md-6">
-                <div id="vehicle_image">  
-                    <img  src="{{ $vehicle[0]->image_url }} " class="img-responsive" alt="image">
-                 </div>
+                <div class="image">
+                    <div id="vehicle_image">  
+                        <img  src="{{ $vehicle[0]->image_url }} " class="img-responsive" alt="image">
+                     </div>
+                </div>
             </div>
             <div class="col-md-6">
                 <div class="main_features">
@@ -154,13 +156,14 @@
 
 {{-- ================================================================================ --}}
             <!--Side-Bar-->
-     <aside   class="col-md-3"> 
+     
+            <aside   class="col-md-3"> 
         <div class="share_vehicle">
               <p>Share: 
                 
                   {{-- <i class="fa fa-facebook-square" aria-hidden="true"></i> --}}
                 
-                  <div class="fb-share-button" data-href="http://localhost:8000/index" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A8000%2Findex&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Chia sẻ</a></div>
+                  <div class="fb-share-button" data-href="{{ route('index') }}" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A8000%2Findex&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Chia sẻ</a></div>
 
                 
 
@@ -182,25 +185,54 @@
               <h5><i class="fa fa-envelope" aria-hidden="true"></i>Book Now</h5>
             </div>
 
-
-            <form method="post">
-               <div class="form-group">
+            {{-- action="{{ route ('') }}" --}}
+            <form method="post"  >
+              @csrf 
+               
                 
-                <input type="text" class="form-control" name="fromdate" placeholder="From Date(dd/mm/yyyy)" required>
-                  </div>
-                 
-                  <div class="form-group">
-                    <input type="text" class="form-control" name="todate" placeholder="To Date(dd/mm/yyyy)" required>
-                  </div>
-                 
-                  <div class="form-group">
-                    <textarea rows="4" class="form-control" name="message" placeholder="Message" required></textarea>
-                  </div>
-
-                  <div class="form-group">
-                    <input type="submit" class="btn"  name="submit" value="Book Now">
-
+                <div class="form-group">
+                  <label for="fromdate">From date </label>
+                  <input type="date"
+                    class="form-control" name="fromdate" id="fromdate" aria-describedby="helpId" placeholder="" required>
+                  <small id="fromdateAlertAfter" style="color:red ; display:none " class="form-text text-muted">
+                    From date is After to date <br>
+                  </small>
+                  <small id="fromdateAlertNotPresent" style="color:red ; display:none " class="form-text text-muted">
+                    From date was Pass
+                  </small>
                 </div>
+
+                <div class="form-group">
+                  <label for="">To date </label>
+                  <input type="date"
+                    class="form-control" name="todate" id="todate" aria-describedby="helpId" placeholder="" required>
+                  <small id="todateAlertBefore" style="color:red ;  display :none" class="form-text text-muted">
+                    To date is Before from date <br>
+                  </small>
+                  <small id="todateAlertNotPresent" style="color:red ;  display :none" class="form-text text-muted">
+                    To date was Pass 
+                  </small>
+                </div>
+
+                <div class="form-group">
+                  <label for="message">Message</label>
+                  <textarea class="form-control" name="message" id="message" rows="4" required></textarea>
+                </div>
+
+               
+
+                  {{-- check auth?  --}}
+                    @guest
+                        <i style="color:red ;  ">You Aren't Logged !!</i> 
+                        
+                        <a style="margin-top:10px;" target="_blank" href='{{  route('login')  }}' class="btn">Login now !!  <span class="angle_arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
+                        @else 
+                        <i style="color:green; display:none;  ">Booking Request Success !!</i> 
+                        <div class="form-group">
+                            <input type="submit" class="btn"  name="booking" value="Book Now">                    
+                      
+                        </div>
+                     @endguest
              </form>
 
 
@@ -217,17 +249,6 @@
           <div class="space-20"></div>
           <div class="divider"></div>
           
-
-
-
-
-
-
-
-
-
-
-
           <!--Similar-Cars-->
           <div class="similar_cars">
             <h3>Similar Cars</h3>
@@ -238,10 +259,14 @@
               <div class="col-md-3 grid_listing">
                 
                   <div class="product-listing-m gray-bg">
-                    <div class="product-listing-img"> 
-                      <a class="similar_img" href="details/{{ $vhl->vehicleID }}" >
-                        <img src="{{ $vhl->image_url }}" class="img-responsive" alt="image" />
-                      </a>
+                    <div class="image">
+                        <div class="product-listing-img"> 
+                     
+                            <a class="similar_img" href="details/{{ $vhl->vehicleID }}" >
+                              <img src="{{ $vhl->image_url }}" class="img-responsive" alt="image" />
+                            </a>
+      
+                          </div>
                     </div>
                     
                     <div class="product-listing-content">
@@ -286,4 +311,110 @@
       
 </section>      
       <!--/Listing-detail--> 
+
+      <script type="text/javascript">
+
+        
+
+       
+        
+        // xử lý nhập liệu
+        $("input[name=fromdate]").blur(function( ){
+         
+          let fromDate = new Date($("input[name=fromdate]").val());
+          let toDate = new Date ($('input[name=todate]').val());
+          let today  =new Date();
+          $("#fromdateAlertNotPresent").show();
+          
+            if( fromDate - today < 0 ){
+              $("#fromdateAlertNotPresent").show();
+              
+              document.getElementById('fromdateAlertNotPresent').style.display="inline";
+             
+            }else{
+              $("#fromdateAlertNotPresent").hide();
+              
+              document.getElementById('fromdateAlertNotPresent').style.display="none";
+              
+            }
+
+        });
+    
+          
+        $("input[name=todate]").blur(function(){
+          let fromDate = new Date($("input[name=fromdate]").val());
+          let toDate = new Date ($('input[name=todate]').val());
+          let today  =new Date();
+        
+          if( toDate- fromDate <=0 ){
+              $("#fromdateAlertAfter").show();
+              $("#todateAlertBefore").show();
+          }else{
+            $("#fromdateAlertAfter").hide();
+              $("#todateAlertBefore").hide();
+          }
+          
+          if( toDate - today < 0  ){
+            $("#todateAlertNotPresent").show();
+          }else{
+            $("#todateAlertNotPresent").hide();
+            
+          }
+         
+
+
+        });
+
+        $.ajaxSetup({
+
+            headers: {
+
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+
+            }
+        });
+        
+
+
+
+        $(".btn-submit").click(function(e){
+          e.preventDefault();
+
+          //the input name la  
+          //phai ep kieu dd-mm-yy
+          var fromdate = $("input[name=fromdate]").val();
+
+          var todate = $("input[name=todate]").val();
+
+          var message = $("input[name=message]").val();
+
+
+
+            // $.ajax({
+
+            //   type:'POST',
+
+            //   url:'/ajaxRequest',
+
+            //   data:{name:name, password:password, email:email},
+
+            //   success:function(data){
+
+            //       alert(data.success);
+            //       alert(data.name);
+            //       alert(data.email);
+            //       alert(data.password);
+
+            //   }
+
+            // });
+
+
+
+          });
+
+      
+      
+      </script>
+
 @endsection

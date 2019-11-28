@@ -18,6 +18,10 @@
     
     <link rel="shortcut icon" href="{{ asset('images/favicon-icon/favicon.png') }}">
 
+    {{-- ajax  --}}
+  <script src="{{ asset('js/jquery.min.js') }}"></script>
+  <meta name="csrf-token" content="{{ csrf_token() }}" />
+
     <style>
         .user_options li{
           margin-left: -30px;
@@ -69,7 +73,7 @@
                             </li>
                             
                             <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('admin.feedback') }}">Manage FeedBack </a>
+                                    <a class="nav-link" href="{{ route('admin.testimonials') }}">Manage Testimonials </a>
                             </li>
 
                             <li class="nav-item">

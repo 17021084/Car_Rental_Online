@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\DB;
 use Illuminate\Http\Request;
 use App\VehiclesModel;
+use App\ConTactUsInfor;
+use App\ManagePage;
+use App\Testimonial;
 
 class PageController extends Controller
 {
@@ -18,9 +21,25 @@ class PageController extends Controller
         // $vehicles=  VehiclesModel::limit(5)->get(); //json
         // chú ý là nó phải là mới nhất 
         $vehicles=  VehiclesModel::where("price",'!=',0 )->orderby('year','desc')->paginate(9); //json
-               
+        
+        
+        // thông tin thêm      
+        $manu=VehiclesModel::select('manufacturer')->groupby('manufacturer')->get();
+        $type=VehiclesModel::select('type')->groupby('type')->get();
+        $vhc =VehiclesModel::select('*')->get();
+        
+        //testimonial  lấy feedback từ user 
+        $test = Testimonial::where('status',1)->get();
+
+
         //tra ve json
-        return view('page.index',[ "vehicles"=> $vehicles ]);
+        return view('page.index',[ "vehicles"=> $vehicles,
+        
+        'type'=>$type,
+        'manu'=>$manu,
+        'vhc'=>$vhc,
+        'test'=>$test
+        ]);
         
         
     
@@ -36,6 +55,9 @@ class PageController extends Controller
         return redirect()->route('details',['id'=>$id]);
 
     }
+
+    //return vehicle details
+    // 
 
     public function details( $id)
     {
@@ -62,13 +84,15 @@ class PageController extends Controller
 
     }
 
+
     /**
-     * return filter value
+     *  filter v
      * 
      */
 
-    public function carlisting()
+    public function carlisting(Request $request)
     {
+        
         
         $manufacturer=VehiclesModel::select('manufacturer')->groupby('manufacturer')->get();
         $category=VehiclesModel::select('make')->groupby('make')->get();
@@ -76,71 +100,74 @@ class PageController extends Controller
         $transmission=VehiclesModel::select('transmission')->groupby('transmission')->get();
         $type=VehiclesModel::select('type')->groupby('type')->get();
         $seats=VehiclesModel::select('seats')->groupby('seats')->get();
-      
+       
+        //form request gui len
+        $vehicles = VehiclesModel::orwhere('make',$request['category'])->orwhere('manufacturer',$request['manufacturer'])
+        ->orwhere('fuel',$request['fuel'])
+        ->orwhere('transmission',$request['transmission'])
+        ->orwhere('type',$request['type'])->orwhere('seats',$request['seats'])->paginate(4);;
+
+
+
          return view('page.carlisting',['manufacturer'=>$manufacturer ,
           'category'=> $category , 'fuel'=>$fuel ,'transmission'=>$transmission  , 'type'=> $type,
-          'seats'=>$seats
+          'seats'=>$seats , 'vehicles'=>$vehicles
           ]);
 
     }
-    public function filtervehicle()
-    {
-                  
 
+    
 
-         return view('page.carlisting');
-
-    }
-    // ajax  handler filter 
-    public function ajaxfiltervehicle(Request $request){
-                    
-        $manufacturer=$request['manufacturer']; 
-        $category=$request['category'];
-        $fuel=$request['fuel'];     
-        $transmission=$request['transmission'];
-        $seats=$request['seats'];
-        $type=$request['type'];
-
-
-        $vehicle = VehiclesModel::orwhere('make',$category)->orwhere('manufacturer',$manufacturer)
-        ->orwhere('fuel',$fuel)->orwhere('transmission',$transmission)->orwhere('type',$type)->orwhere('seats',$seats)->get();
-
-        return  response()->json( ['vehicle'=>$vehicle ] );
-
-
-    }
-
-
-
-
-    public function aboutus()
-    {
-        return view('page.aboutus');
-    }
-
-
+    
+    
     public function contactus()
     {
-        return view('page.contactus');
+        $infor =ConTactUsInfor::get();
+        return view('page.contactus',['infor'=>$infor]);
     }
-
-
+    //render infor in header
+    public function pageinfor()
+    {
+        $infor =ConTactUsInfor::get();
+        $email =$infor[0]->ContactNo;
+        $phone =$infor[0]->EmailId;
+        
+        return response()->json(['email'=>$email, 'phone'=>$phone]);
+    }
+    
+    
+    
+    public function aboutus()
+    {
+        $page=ManagePage::where('type','aboutus')->get();
+        return view('page.aboutus', [ 'aboutus'=>$page]);
+    }
+    
+    
+    
     public function term()
     {
-        return view('page.termofuse');
+        
+        $page=ManagePage::where('type','terms')->get();
+        return view('page.termofuse', [ 'terms'=>$page] );
     }
-
+    
     
     public function privacy()
     {
-        return view('page.privacypolicy');
+        $page=ManagePage::where('type','privacy')->get();
+        return view('page.privacypolicy',[ 'privacy'=>$page]);
     }
-
-
+    
+    
     public function faqs()
     {
-        return view('page.faqs');
+        $page=ManagePage::where('type','faqs')->get();
+        return view('page.faqs',[ 'faqs'=>$page]);
     }
+
+
+
 
 
     // =========

@@ -19,6 +19,11 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     
+    {{-- ajax --}}
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+  
+
     <style>
         .user_options li{
           margin-left: -30px;
@@ -79,17 +84,25 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                    
                                     <ul class="user_options" type ='none'>
-                                        <li> 
-                                            <a class="dropdown-item" href="{{ route('profile') }}"  >
-                                                    Profile Setting                                              
-                                            </a>                                   
-                                        </li>
+                                       
 
                                         <li> 
-                                            <a class="dropdown-item" href="#"  >
-                                                    My Booking                                             
+                                            <a class="dropdown-item" href="{{ route('home') }}"  >
+                                                    My Booking Home                                           
                                             </a>                                   
-                                        </li>                  
+                                        </li>    
+                                        
+                                        <li> 
+                                                <a class="dropdown-item" href="{{ route('profile') }}"  >
+                                                        Profile Setting                                              
+                                                </a>                                   
+                                        </li>
+                                        <li> 
+                                                <a class="dropdown-item" href="{{ route('testimonials') }}"  >
+                                                        My Testimonials                                            
+                                                </a>                                   
+                                        </li>
+                                        
                                         <li> 
                                             <a class="dropdown-item" href="{{ route('logout') }}"
                                                 onclick="event.preventDefault();

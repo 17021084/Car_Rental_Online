@@ -11,7 +11,7 @@
                       <h1>About Us </h1>
                     </div>
                     <ul class="coustom-breadcrumb">
-                      <li><a href="#">Home</a></li>
+                      <li><a href="{{ route('index') }}">Home</a></li>
                       <li>About Us </li>
                     </ul>
                   </div>
@@ -25,7 +25,9 @@
               
               
                     <h2>About Us </h2>
-                    <p><span style="color: rgb(0, 0, 0); font-family: &quot;Open Sans&quot;, Arial, sans-serif; text-align: justify;">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat</span> </p>
+                    <p>
+                        {!! $aboutus[0]->detail !!}
+                    </p>
                   </div>
                    </div>
               </section>    
