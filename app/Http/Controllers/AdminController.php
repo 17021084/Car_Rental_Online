@@ -7,7 +7,8 @@ use App\User;
 use App\VehiclesModel;
 use App\Testimonial;
 use App\ConTactUsInfor;
-use PhpParser\Node\Stmt\Else_;
+use App\GuestContact;
+use App\ManagePage;
 
 class AdminController extends Controller
 {
@@ -24,7 +25,7 @@ class AdminController extends Controller
        return view('admin.adminmaster');
         
     }
-    // quản lý contact trên page
+    // manage contact of page
     public function contact(){
      
             $contact = ConTactUsInfor::get();               
@@ -41,21 +42,23 @@ class AdminController extends Controller
         
     }
 
-    // quản lý page 
+    // manage page 
     public function pages(){
-
-
-        return view('admin.pages');
+        $page = ManagePage::get();
+        // var_dump($page[0]->detail);
+        return view('admin.pages',['page'=>$page] );
         
     }
-    // quản lý booking
+
+
+    // manage booking
     public function booking(){
         return view('admin.booking');
         // return view('admin.book');
         
     }
 
-    //quản lý users
+    //See users
     public function users(Request $request){
         if( $request->has('search') ){
             $search = "%".$request['search']."%";
@@ -106,16 +109,74 @@ class AdminController extends Controller
         return view('admin.vehicles' , ['vehicles' =>$vehicles ] );
         
     }
-    public function editvehicle(){
+
+    /**
+     * edit vehicle
+     * 
+     * 
+     */
+    public function editvehicle( $id){
         
-        return view('admin.editvehicle');
-        
+        $vehicle= VehiclesModel::where("vehicleID",$id )->get();
+        // var_dump($vehicle);
+
+        return view('admin.editvehicle', ['vehicle'=>$vehicle[0]] );
     }
+
+    public function posteditvehicle(Request $request){
+        
+        VehiclesModel::where("vehicleID", $request['Id'] )->update( ['price'=>$request['Price'],'year'=>$request['Year'],'manufacturer'=>$request['Manufacturer'],'make'=>$request['Category'],
+        'condition'=>$request['Condition'],'cylinders'=>$request['Cylinders'],'fuel'=>$request['Fuel'],'odometer'=>$request['Odometer'],
+        'title_status'=>$request['status'],'transmission'=>$request['Transmission'],'drive'=>$request['Drive'],'size'=>$request['Size'],
+        'seats'=>$request['Seats'],'type'=>$request['Type'],'image_url'=>$request['ImageURL'],'paint_color'=>$request['PaintColor'],'desc'=>$request['Description'] ]);
+        
+       
+        return redirect()->route('admin.editvehicle', ['id'=>$request['Id']] ) ;
+    }
+
+    /**Delete vehicles
+     * 
+     */
+    public function deletevehicle($id){
+        
+        VehiclesModel::where("vehicleID", $id )->delete();
+        
+        return redirect()->route('admin.vehicles' ) ;
+    }
+
+    
+
+
+    /**
+     * add vehicle
+     * 
+     * 
+     */
+
     public function addvehicle(){
         return view('admin.addvehicle');
         
     }
+    public function postaddvehicle(Request $request){
+    
+       
+        
+        VehiclesModel::insertGetId( ['price'=>$request['Price'],'year'=>$request['Year'],'manufacturer'=>$request['Manufacturer'],'make'=>$request['Category'],
+        'condition'=>$request['Condition'],'cylinders'=>$request['Cylinders'],'fuel'=>$request['Fuel'],'odometer'=>$request['Odometer'],
+        'title_status'=>$request['status'],'transmission'=>$request['Transmission'],'drive'=>$request['Drive'],'size'=>$request['Size'],
+        'seats'=>$request['Seats'],'type'=>$request['Type'],'image_url'=>$request['ImageURL'],'paint_color'=>$request['PaintColor'],'desc'=>$request['Description'] ]);      
+       
+        //route admin.vehicle  ,['message'=>$request['Manufacturer']] 
+        return redirect()->route('admin.addvehicle');
+        
+    }
 
+
+
+    /**
+     * render view Testimonials and search with 'testimonials ()'
+     * update Testimonials with  'testimonials()'
+     */
 
     public function testimonials(Request $request){
       
@@ -140,8 +201,50 @@ class AdminController extends Controller
         return view('admin.testimonials', ['test' =>$test ]);
         
     }
+
+    public function testupdate(Request $request){
         
-    
+        $id= (int)$request['id'];
+       $test = Testimonial::where('id',$id)->get();
+               
+       if($test[0]->status==1){
+           
+           Testimonial::where('id',$id)->update(['status'=>0]);
+           $test = Testimonial::where('id',$id)->get();
+           
+           
+        }else{
+            Testimonial::where('id',$id)->update(['status'=>1]);
+            $test = Testimonial::where('id',$id)->get();
+            
+        
+          }       
+        return $test[0];
+         
+        
+    }
+        
+    // guest contact admin 
+    public function guestcontact(Request $request){
+
+        if($request->has('search') ){
+            $search = "%".$request['search']."%";
+            $contact = GuestContact::orwhere( 'id','LIKE',$search )->
+            orwhere( 'name','LIKE',$search )->
+            orwhere( 'EmailId','LIKE',$search )->
+            orwhere( 'ContactNumber','LIKE',$search )->
+            orwhere( 'Message','LIKE',$search )->
+            orwhere( 'PostingDate','LIKE',$search )->
+            paginate(5);
+
+        }else{
+
+            $contact = GuestContact::paginate(5);
+            
+        }
+
+        return view('admin.guestcontact',['contact'=>$contact]);
+    }
 
     
 

@@ -38,7 +38,8 @@
                 <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
 
               </ul>
-              <p class="copy-right"> &copy; Assignment of  web development'course </p>
+              <p class="copy-right"> &copy; Assignment of  web development'course -光中 </p> <br>
+            
             </div>
           </div>
           <div class="col-md-6 col-md-pull-6">

@@ -30,18 +30,25 @@ class HomeController extends Controller
     }
     
     
-    public function profile(Request $request)
+    public function profile()
     {
-            
-        // $email=$request['email'];
-        // $dob=$request['dob'];
-        // $name=$request['name'];
-        // $phone=$request['phone'];
-        // User::where('email',$email)->update( ['name'=>$name , 'dob'=>$dob,'phone'=>$phone]);
-        
-        return view('users.profile');
+          
+        return view('users.profile'  );
     }
 
+
+    public function updateprofile(Request $request){
+              
+        $email=$request['email'];
+        $dob=$request['dob']; 
+        $name=$request['name'];
+        $phone=$request['phone']; 
+     
+        User::where('email',$email)->update( ['name'=>$name , 'dob'=>$dob,'phone'=>$phone]);
+        $user=User::where('email',$email)->get();
+
+        return $user[0];
+    }
 
     public function testimonials(){
 

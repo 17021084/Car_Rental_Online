@@ -129,8 +129,8 @@ class PageController extends Controller
     public function pageinfor()
     {
         $infor =ConTactUsInfor::get();
-        $email =$infor[0]->ContactNo;
-        $phone =$infor[0]->EmailId;
+        $email =$infor[0]->EmailId;
+        $phone =$infor[0]->ContactNo;
         
         return response()->json(['email'=>$email, 'phone'=>$phone]);
     }

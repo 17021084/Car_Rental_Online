@@ -24,8 +24,8 @@
 			<div class="col-md-4" >
 					<form id="searchForm" class="form-inline my-2 my-lg-0" action="{{ route('admin.vehicles') }}" method="get" >
 						@csrf
-							<input onkeyup="submitform()" id="search" class="form-control mr-sm-2" type="text" placeholder="Search  Vehicles" name="search" >
-							{{-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> --}}
+							<input  id="search" class="form-control mr-sm-2" type="text" placeholder="Search  Vehicles" name="search" >
+							<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 					</form>
 			</div>
 
@@ -62,7 +62,7 @@
 					@foreach ($vehicles as $item)
 					<tr>
 							<td scope="row"> 
-								<a href="http://">
+								<a href="{{ route('admin.editvehicle',['id'=> $item->vehicleID ]) }}"  >
 									<i class="fa fa-edit"> {{ $item->vehicleID }}</i>
 								</a>
 
@@ -107,10 +107,10 @@
 	<script>
 		
 	
-		function submitform(){
+		// function submitform(){
 			
-			document.getElementById('searchForm').submit();
-		}
+		// 	document.getElementById('searchForm').submit();
+		// }
 
 		
 

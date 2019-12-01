@@ -33,33 +33,33 @@
                         <i> Signed up at : <b>{{ Auth::user()->created_at  }}</b></i>  
                     </div>
                     
-                   
-                    <form action="/action_page.php">
+                    {{-- id="sumitform" action="{{ route('updateprofile') }} }}" method="get" --}}
+                    <div >
                       @csrf 
            
                       <div class="form-group">
-                        <label for="Name">Name : <b> {{ Auth::user()->name  }}</b></label> 
-                        <input type="text" class="form-control" id="Name" placeholder="Update Name" name="Name">
+                        <label  for="Name">Name : <b id="lbName"> {{ Auth::user()->name  }}</b></label> 
+                        <input type="text"  value = "{{ Auth::user()->name  }}" class="form-control" id="Name" placeholder="Update Name" name="Name">
                       </div>
             
                       <div class="form-group">
-                        <label for="Phone">Contact Number : <b>{{ Auth::user()->phone  }}</b></label> 
-                        <input type="text" class="form-control" id="Phone" placeholder="Update phone" name="Phone">
+                        <label  for="Phone">Contact Number : <b id="lbPhone">{{ Auth::user()->phone  }}</b></label> 
+                        <input type="text" value="{{ Auth::user()->phone  }}" class="form-control" id="Phone" placeholder="Update phone" name="Phone">
                       </div>
             
                       <div class="form-group">
-                        <label for="dob">Date Of Birth : <b>{{ Auth::user()->dob  }}</b></label> 
-                        <input type="date" class="form-control" id="dob" placeholder="Update Date Of Birth" name="dob">
+                        <label  for="dob">Date Of Birth : <b id="lbDob">{{ Auth::user()->dob  }}</b></label> 
+                        <input type="date" value="{{ Auth::user()->dob }}"  class="form-control" id="dob" placeholder="Update Date Of Birth" name="dob">
                       </div>
             
                     
                      
-                      <button type="submit" id="btnUpdate" class="btn btn-primary">Submit</button>
+                      <button   class="btn btn-primary btn-submit">Submit</button>
             
             
-                    </form>
+                    </div>
 
-                  </div>
+              </div>
             
 
 
@@ -67,7 +67,6 @@
 </div>
 
 <script type="application/javascript">
-
       $.ajaxSetup({
 
           headers: {
@@ -80,29 +79,34 @@
 
 
 
-  $("#btnUpdate").click(function(e){
+  $(".btn-submit").click(function(e){
+   
 
     e.preventDefault();
 
     //the input name la ten 
-    var name = $("input[name=Name]").val();
-    var phone = $("input[name=Phone]").val();
-    var dob = $("input[name=dob]").val();
-    var email ='{{  Auth::user()->email }}' ;
-
-  
+    let name = $("input[name=Name]").val();
+    let phone = $("input[name=Phone]").val();
+    let email ='{{  Auth::user()->email }}' ;
+    let date = new Date($("input[name=dob]").val());
+    let dob = (date.getMonth()+1) +"/"+date.getDay()+ "/"+date.getFullYear() ;
+    
   $.ajax({
 
       type:'POST',
 
-      url:'{{ route('profile') }}',
+      url:'{{ route('updateprofile') }}',
 
       data:{name:name, phone:phone, email:email ,dob:dob},
 
-      success:function(data){
-
-          alert("gui thanh cong");
-
+      success:function(user){
+        
+        $("#lbPhone").html(user.phone);
+        $("#lbDob").html(user.dob);
+        $("#lbName").html(user.name);
+        $("input[name=Name]").val(user.name);
+         $("input[name=Phone]").val(user.phone);
+         $("input[name=dob]").val(user.dob);
       }
 
     });

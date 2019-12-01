@@ -1,6 +1,7 @@
 @extends('admin.adminmaster')
 <style>
 .contact{
+	padding-top: 30px;
 	margin-left: 10%;
 	width: 80%;
 }
@@ -12,6 +13,8 @@
 	<div class="contact">
 		<h2> <b>Page Update</b> </h2>
 		
+		
+		<form action="/action_page.php">
 			<div class="form-group">
 					<label for="sel1">Select Pages:</label>
 
@@ -23,12 +26,15 @@
 					</select>
 
 			</div>
+		
+		
 
-		<form action="/action_page.php">
-						
+
 			<div class="form-group">
 				<label for=""></label>
-				<textarea class="form-control" name="" id="" rows="10"></textarea>
+				<textarea    class="form-control" name="" id="form"  rows="30">
+						value="{!! $page[0]->detail !!}" 
+				</textarea>
 			</div>
 		
 

@@ -39,15 +39,12 @@
               <div class="header_widgets">
                
                 <p class="uppercase_text">For Support Mail us : </p>
-                <a href="mailto:info@example.com"><i id="email" class="fa fa-envelope" aria-hidden="true"> Carforrent@vnu.edu.vn</i></a> </div>
+                <a href="mailto:info@example.com"><i id="email" class="fa fa-envelope" aria-hidden="true"> </i></a> </div>
                  <div class="header_widgets">                         
                 <p class="uppercase_text">Service Helpline Call Us: </p>
-                <a href="tel:61-1234-5678-09"><i id="phone" class="fa fa-phone fa-1x" aria-hidden="true"> +84 169 920 246</i> </a> </div>
+                <a href="tel:61-1234-5678-09"><i id="phone" class="fa fa-phone fa-1x" aria-hidden="true"> </i> </a> </div>
               
-                
-            
-
-           
+     
       {{-- <div class="login_btn"> <a href="/home" class="btn btn-xs uppercase" data-toggle="modal" data-dismiss="modal">Login / Register</a> </div> --}}
             </div>
           </div>
@@ -61,7 +58,9 @@
 <nav id="navigation_bar" class="navbar navbar-default">
     <div class="container">
       <div class="navbar-header">
-        <button id="menu_slide" data-target="#navigation" aria-expanded="false" data-toggle="collapse" class="navbar-toggle collapsed" type="button"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+        <button id="menu_slide" data-target="#navigation" aria-expanded="false" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
+           <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> 
+          </button>
       </div>
 
 
@@ -101,7 +100,7 @@
        
         </div>
 
-
+      
 
 
         {{-- Search  --}}
@@ -118,6 +117,7 @@
 
   
     {{-- menu--}}
+
       <div class="collapse navbar-collapse" id="navigation">
         <ul class="nav navbar-nav">
           <li><a href="{{ route('index') }}">Home</a></li>
@@ -127,6 +127,7 @@
           <li><a href="{{ route('contactus') }}">Contact Us</a></li>
         </ul>
       </div>
+
     {{--/menu--}} 
 
     </div>

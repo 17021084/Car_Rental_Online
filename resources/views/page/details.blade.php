@@ -35,7 +35,7 @@
       </div>
       <div class="col-md-3">
         <div class="price_info">
-           <p style="padding-bottom:20px" >${{ $vehicle[0]->price }}  </p>Per Day              
+           <p style="padding-bottom:20px" id="price"  >${{ $vehicle[0]->price }}  </p>Per Day              
         </div>
       </div>
     </div>
@@ -192,8 +192,8 @@
                 
                 <div class="form-group">
                   <label for="fromdate">From date </label>
-                  <input type="date"
-                    class="form-control" name="fromdate" id="fromdate" aria-describedby="helpId" placeholder="" required>
+                  <input type="date" 
+                    class="form-control" name="fromdate" id="fromdate"  required>
                   <small id="fromdateAlertAfter" style="color:red ; display:none " class="form-text text-muted">
                     From date is After to date <br>
                   </small>
@@ -204,17 +204,29 @@
 
                 <div class="form-group">
                   <label for="">To date </label>
-                  <input type="date"
-                    class="form-control" name="todate" id="todate" aria-describedby="helpId" placeholder="" required>
+                  <input type="date"  
+                    class="form-control" name="todate" id="todate"   required>
+
                   <small id="todateAlertBefore" style="color:red ;  display :none" class="form-text text-muted">
                     To date is Before from date <br>
                   </small>
                   <small id="todateAlertNotPresent" style="color:red ;  display :none" class="form-text text-muted">
                     To date was Pass 
                   </small>
+                
+
+
+                </div>
+                  
+                <div id="total_money">
+                    <h6> Total Money</h6>
+                    <b id="day"> </b>
+                    <b style="color: red" id="money">  </b> 
+
                 </div>
 
                 <div class="form-group">
+                  <br>
                   <label for="message">Message</label>
                   <textarea class="form-control" name="message" id="message" rows="4" required></textarea>
                 </div>
@@ -352,6 +364,9 @@
           }else{
             $("#fromdateAlertAfter").hide();
               $("#todateAlertBefore").hide();
+              $('#money').html( ((toDate-fromDate)/(3600000*24)) *Number('{{ $vehicle[0]->price }}')  +'$')
+              $('#day').html(  (toDate-fromDate)/(3600000*24)+' Days * ' + '{{ $vehicle[0]->price }}'+" $/1day =  "  );
+           
           }
           
           if( toDate - today < 0  ){
@@ -364,6 +379,7 @@
 
 
         });
+
 
         $.ajaxSetup({
 

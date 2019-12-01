@@ -71,6 +71,9 @@
                             <li class="nav-item">
                                     <a class="nav-link" href="{{ route('admin.contact') }}">Update Contact Infor</a>
                             </li>
+                            <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('admin.guestcontact') }}">Guest Contact </a>
+                            </li>
                             
                             <li class="nav-item">
                                     <a class="nav-link" href="{{ route('admin.testimonials') }}">Manage Testimonials </a>

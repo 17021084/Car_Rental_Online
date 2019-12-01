@@ -10,5 +10,8 @@ class ManagePage extends Model
     protected $table = "tblpages";
     protected $primaryKey = 'type';
     public $timestamps = false; 
+    protected $fillable = [
+        'detail',
+    ];
 
 }

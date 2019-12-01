@@ -71,8 +71,13 @@ Route::get('admin/pages', 'AdminController@pages' )->name('admin.pages');
 Route::get('admin/contact', 'AdminController@contact' )->name('admin.contact');
 Route::post('admin/updatecontact', 'AdminController@updatecontact' )->name('admin.updatecontact');
 Route::get('admin/testimonials', 'AdminController@testimonials' )->name('admin.testimonials');
-Route::get('admin/editvehicle', 'AdminController@editvehicle' )->name('admin.editvehicle');
+Route::post('admin/testupdate', 'AdminController@testupdate' )->name('admin.testupdate');
+Route::get('admin/editvehicle/{id}', 'AdminController@editvehicle' )->name('admin.editvehicle');
+Route::post('admin/deletevehicle/{id}', 'AdminController@deletevehicle' )->name('admin.deletevehicle');
+Route::post('admin/posteditvehicle', 'AdminController@posteditvehicle' )->name('admin.posteditvehicle');
 Route::get('admin/addvehicle', 'AdminController@addvehicle' )->name('admin.addvehicle');
+Route::get('admin/postaddvehicle', 'AdminController@postaddvehicle' )->name('admin.postaddvehicle');
+Route::get('admin/guestcontact', 'AdminController@guestcontact' )->name('admin.guestcontact');
 
 
 
@@ -80,4 +85,5 @@ Route::get('admin/addvehicle', 'AdminController@addvehicle' )->name('admin.addve
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/home/profile', 'HomeController@profile')->name('profile');
+Route::post('/home/updateprofile', 'HomeController@updateprofile')->name('updateprofile');
 Route::get('/home/testimonials', 'HomeController@testimonials')->name('testimonials');
