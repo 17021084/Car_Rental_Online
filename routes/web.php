@@ -32,6 +32,7 @@ Route::get('/details/{id}'   , 'PageController@details'   )->name('details');
 Route::get('/details/details/{id}'   , 'PageController@redetails'   )->name('/details/details');
 
 //booking
+Route::post('/booking'   , 'PageController@booking'   )->name('booking');
 
 
 
@@ -68,6 +69,7 @@ Route::get('admin/vehicles', 'AdminController@vehicles' )->name('admin.vehicles'
 Route::get('admin/booking', 'AdminController@booking' )->name('admin.booking');
 Route::get('admin/users', 'AdminController@users' )->name('admin.users');
 Route::get('admin/pages', 'AdminController@pages' )->name('admin.pages');
+Route::post('admin/postpages', 'AdminController@postpages' )->name('admin.postpages');
 Route::get('admin/contact', 'AdminController@contact' )->name('admin.contact');
 Route::post('admin/updatecontact', 'AdminController@updatecontact' )->name('admin.updatecontact');
 Route::get('admin/testimonials', 'AdminController@testimonials' )->name('admin.testimonials');
@@ -87,3 +89,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/home/profile', 'HomeController@profile')->name('profile');
 Route::post('/home/updateprofile', 'HomeController@updateprofile')->name('updateprofile');
 Route::get('/home/testimonials', 'HomeController@testimonials')->name('testimonials');
+Route::post('/home/posttestimonials', 'HomeController@posttestimonials')->name('posttestimonials');

@@ -61,7 +61,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                         <label for="Tranmission">Tranmission :<b>{{ $vehicle->transmission }}</b></label>
-                                                        <input value="{{ $vehicle->transmission }}" type="text" class="form-control" id="Tranmission" placeholder="Tranmission" name="Tranmission">
+                                                        <input value="{{ $vehicle->transmission }}" type="text" class="form-control" id="Transmission" placeholder="Transmission" name="Transmission">
                                                 </div>
 
                                                 <div class="form-group">

@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\BookingModel;
 use App\DB;
 use Illuminate\Http\Request;
 use App\VehiclesModel;
 use App\ConTactUsInfor;
 use App\ManagePage;
 use App\Testimonial;
+use DateTime;
 
 class PageController extends Controller
 {
@@ -165,6 +167,71 @@ class PageController extends Controller
         $page=ManagePage::where('type','faqs')->get();
         return view('page.faqs',[ 'faqs'=>$page]);
     }
+    
+    public function booking( Request $request)
+    {
+        // chua xu li logic 
+        $email =$request['email'];
+        $fromdate = date_format(date_create($request['fromdate']),"d/m/Y");
+        $todate = date_format(date_create($request['todate']),"d/m/Y");
+        $message = $request['message'];
+        $vehicleID = $request['vehicleID'];
+        
+        // 'userEmail','VehicleId',,'FromDate','ToDate','message'
+        // 1 confirm  0 not confrimed yet 2 cancell
+
+        //check logic xem co dat dc xe ko
+        $booking = BookingModel::where('VehicleId',$vehicleID)->get();
+        
+        //check liệu có ai đã book xe có id này chưa
+        if (count($booking)==0){
+            // chưa có ai từng booked xe này
+            
+            BookingModel::insertGetId(['userEmail'=>$email,'VehicleId'=>$vehicleID,
+            'FromDate'=>$fromdate,'ToDate'=>$todate,'message'=>$message, 'Status'=>0]);
+
+            return "booking request  from date  : $fromdate  is success  !! its is in 'not confirmed yet' ";
+            
+       } else{ 
+           //có nhiều người đã  book xe này
+              
+            // booking request dang gửi lên   ep  kiểu   
+             $fromDateRequesting =   DateTime::createFromFormat('d/m/Y', $fromdate  );
+         
+            foreach($booking as $item){
+
+                // cái đã gửi book request lên rồi rồi               
+                $todatebooked =  DateTime::createFromFormat('d/m/Y', $item->ToDate);                
+
+                if(   $todatebooked  > $fromDateRequesting  && $item->Status == 1 ){
+                    // nếu trong số xe có cùng id và fromdate(booking đang gửi lên) < toDate (của cái đã có)
+                    // và  nó đã đc confirm rồi  tức là Status =1 
+                    // =>> booking ko dc
+                
+                    return "booking request  from date  : $fromdate  fail because this vehicle had been rented " ;
+                    
+                 
+                }
+
+             }
+        // chạy hết for của những thằng cùng id  
+        // fromdate (booking gửi lên)  >  cái toDate (của cái đã có ) hoăc
+        //  fromdate (booking gửi lên)  <  cái toDate (của cái đã có ,nhưng status = 0 2) thì có nghĩa là
+        //  booking request vẫn đc gửi  và đang trạng thái ' not confirmed yet '
+
+        BookingModel::insertGetId(['userEmail'=>$email,'VehicleId'=>$vehicleID,
+        'FromDate'=>$fromdate,'ToDate'=>$todate,'message'=>$message, 'Status'=>0]);
+
+        return " you booking same vehicle of another booking  but their booking was not confirmed yet  or cancelled  So  booking request  from date  : $fromdate  is success !! it is in 'not comfirm yet' ";
+       }
+        
+
+        
+
+        
+    }
+
+
 
 
 

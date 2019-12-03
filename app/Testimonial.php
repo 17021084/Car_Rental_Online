@@ -12,9 +12,10 @@ class Testimonial extends Model
     protected $primaryKey = 'id';
     // có có trường time stamps thì để false ko nó lỗi
     public $timestamps = false; 
-
+    public $autoincrement = true;
+    
     protected $fillable = [
-        'status'
+        'status','Testimonial','UserEmail'
     ];
 
 }

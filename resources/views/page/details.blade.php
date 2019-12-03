@@ -186,7 +186,7 @@
             </div>
 
             {{-- action="{{ route ('') }}" --}}
-            <form method="post"  >
+            <form action="{{ route('booking') }}" method="POST" >
               @csrf 
                
                 
@@ -202,10 +202,14 @@
                   </small>
                 </div>
 
+                
+
                 <div class="form-group">
                   <label for="">To date </label>
                   <input type="date"  
                     class="form-control" name="todate" id="todate"   required>
+                    
+                    <input type="text" name="vehicleID" value="{{ $vehicle[0]->vehicleID }}" style="display:none">
 
                   <small id="todateAlertBefore" style="color:red ;  display :none" class="form-text text-muted">
                     To date is Before from date <br>
@@ -239,9 +243,10 @@
                         
                         <a style="margin-top:10px;" target="_blank" href='{{  route('login')  }}' class="btn">Login now !!  <span class="angle_arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
                         @else 
+                        <input type="text" name="email" value="{{ Auth::user()->email }}" style="display:none">
                         <i style="color:green; display:none;  ">Booking Request Success !!</i> 
                         <div class="form-group">
-                            <input type="submit" class="btn"  name="booking" value="Book Now">                    
+                            <input type="submit" class="btn" id="btnBooking" name="booking" value="Book Now">                    
                       
                         </div>
                      @endguest
@@ -379,57 +384,7 @@
 
 
         });
-
-
-        $.ajaxSetup({
-
-            headers: {
-
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-
-            }
-        });
-        
-
-
-
-        $(".btn-submit").click(function(e){
-          e.preventDefault();
-
-          //the input name la  
-          //phai ep kieu dd-mm-yy
-          var fromdate = $("input[name=fromdate]").val();
-
-          var todate = $("input[name=todate]").val();
-
-          var message = $("input[name=message]").val();
-
-
-
-            // $.ajax({
-
-            //   type:'POST',
-
-            //   url:'/ajaxRequest',
-
-            //   data:{name:name, password:password, email:email},
-
-            //   success:function(data){
-
-            //       alert(data.success);
-            //       alert(data.name);
-            //       alert(data.email);
-            //       alert(data.password);
-
-            //   }
-
-            // });
-
-
-
-          });
-
-      
+   
       
       </script>
 

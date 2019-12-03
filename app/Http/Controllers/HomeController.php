@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\BookingModel;
 use Illuminate\Http\Request;
 use App\User;
-
+use App\Testimonial;
+use App\Http\Controllers\Auth;
 use Illuminate\Support\Facades\Schema;
 
 class HomeController extends Controller
@@ -22,17 +24,23 @@ class HomeController extends Controller
     /**
      * Show the application dashboard.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     *  render booking list
      */
     public function index()
     {
-        return view('users.home');
+        $booking = BookingModel::where('userEmail',auth()->user()->email)->orderBy('PostingDate','desc')->get(); 
+        
+        // var_dump($booking);
+        return view('users.home',['booking'=>$booking]);
     }
     
     
     public function profile()
     {
-          
+        // BookingModel::where()->get();
+        //   echo auth()->user()->email;
+
+
         return view('users.profile'  );
     }
 
@@ -51,7 +59,18 @@ class HomeController extends Controller
     }
 
     public function testimonials(){
+        
+        $test = Testimonial::where('UserEmail',auth()->user()->email )->orderBy('PostingDate' ,'desc')->get();
 
-        return view('users.testimonials');
+        
+        return view('users.testimonials', ['test'=>$test] );
     }
+    public function posttestimonials(Request $request){
+
+        Testimonial::insertGetId(['Testimonial' => $request['Testimonials'] ,'UserEmail'=>auth()->user()->email]);
+
+        return redirect()->route('testimonials');
+    }
+
+
 }

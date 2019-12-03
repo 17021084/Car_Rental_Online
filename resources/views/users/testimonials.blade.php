@@ -39,38 +39,33 @@
             <div class="testimonials">
                 
                 <div class="row">
-                     <div class="col-xl-12">
-                        <div class="test" >
-                             <p>
+                   @foreach ($test as $item)
+                        <div class="col-xl-12">
+                                <div class="test" >
+                                    <p >
+                                        <b>{{ $item->Testimonial }}</b>
+                                                
+                                    </p>
+                                    <i>Post at : {{ $item->PostingDate }}</i>
 
-                                        bla bla bla
-                            </p>
-                            <i>Post at : .........</i>
-
+                                </div>
                         </div>
-                     </div>
-                     <div class="col-xl-12">
-                        <div class="test" >
-                             <p>
-
-                                        bla bla bla
-                            </p>
-                            <i>Post at : .........</i>
-
-                        </div>
-                     </div>
-                     
+                        
                     
+
+                   @endforeach
+                    
+                  
                     
 
                 </div>
 
                 
                 
-                <form id="form_post" action="" method="post">
-                  
+                <form id="form_post" action="{{ route('posttestimonials') }}" method="post">
+                  @csrf
                     <div class="form-group">
-                        <label for="Testimonials"> <b>Post Testimonials</b></label>
+                        <label for="Testimonials"> <b>Post New Testimonials</b></label>
                         <textarea class="form-control" name="Testimonials" id="Testimonials" rows="3"></textarea>
       
                         
@@ -87,9 +82,6 @@
     </div>
 </div>
 
-{{-- <script type="application/javascript">
-
-</script> --}}
 
 
 @endsection

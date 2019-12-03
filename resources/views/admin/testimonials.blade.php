@@ -130,7 +130,8 @@
 
 			
 			//the input name la ten 
-			let id = parseInt(this.value);
+			// let id = parseInt(this.value);
+			var id = this.value;
 			// alert(this.value)
 				
 
@@ -141,7 +142,7 @@
 
 			url:'{{ route('admin.testupdate') }}',
 
-				data:{id:id},
+			data:{id:id},
 
 				success:function(test){
 					// alert(test.status);

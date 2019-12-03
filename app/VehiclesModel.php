@@ -17,6 +17,9 @@ class VehiclesModel extends Model
        ,'title_status','transmission','drive','size','seats','type','image_url','paint_color','desc'
     ];
             
+    // public function booking(){  
+    //   return $this->hasMany('App\BookingModel' );
+    // }
         // vehicleID
         // price
         // year

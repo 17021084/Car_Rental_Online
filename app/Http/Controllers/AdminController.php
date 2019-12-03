@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\BookingModel;
 use Illuminate\Http\Request;
 use App\User;
 use App\VehiclesModel;
@@ -49,13 +50,28 @@ class AdminController extends Controller
         return view('admin.pages',['page'=>$page] );
         
     }
-
+    public function postpages(Request $request){
+    
+        ManagePage::where( 'type', $request['type'] )->update( ['detail'=> $request['summary-ckeditor'] ]);
+        
+        return redirect()->route('admin.pages');
+        
+    }
+    
 
     // manage booking
     public function booking(){
-        return view('admin.booking');
-        // return view('admin.book');
-        
+             
+        $booking=BookingModel::where('userEmail','erina@gmail')->orderBy('PostingDate','desc')->get(); 
+        // var_dump($booking);
+        // foreach( $booking as $item){
+        //     echo  $item->vehicle()->first()->vehicleID." ". $item->vehicle()->first()->price ." <br> " ;
+
+        // }
+
+
+        return view('admin.booking',['booking'=>$booking]);
+          
     }
 
     //See users
@@ -193,7 +209,7 @@ class AdminController extends Controller
         }else{
 
             // neu ko co formseach gui len
-             $test = Testimonial::paginate(10);     
+             $test = Testimonial::orderBy('PostingDate','desc')->paginate(10);     
 
         }
 
@@ -204,9 +220,9 @@ class AdminController extends Controller
 
     public function testupdate(Request $request){
         
-        $id= (int)$request['id'];
-       $test = Testimonial::where('id',$id)->get();
-               
+          $id= $request['id'];
+         $test = Testimonial::where('id',$id)->get();
+
        if($test[0]->status==1){
            
            Testimonial::where('id',$id)->update(['status'=>0]);
