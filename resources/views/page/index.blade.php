@@ -14,10 +14,7 @@
 --}}
 
 <style>
-/* .pagination {
 
-    margin-left:70%; 
-} */
 
 
 
@@ -47,7 +44,7 @@
                     <div class="banner_content">
                     <h1>Find the right car for you.</h1>
                     <p>We have more than a thousand cars for you to choose. </p>
-                    <a href="#" class="btn">Read More <span class="angle_arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></a> </div>
+                    <a href="{{ route('carlisting') }}" class="btn">Read More <span class="angle_arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></a> </div>
                 </div>
                 </div>
             </div>
@@ -85,8 +82,10 @@
                             <div class="col-list-3">
                                 <div class="recent-car-list">
                                     <div class="car-info-box"> 
-                                        <a href="vehical-details.php?vhid=1"><img src="{{ $vhl->image_url }}" class="img-responsive" alt="image"></a>
-                                       
+                                        
+                                        <div class='image'>
+                                            <a href="details/{{$vhl->vehicleID }}" ><img src="{{ $vhl->image_url }}" class="img-responsive" alt="image"></a>
+                                        </div>    
                                         <ul>
                                             <li><i class="fa fa-beer" aria-hidden="true"></i>{{ $vhl->fuel }}</li>
                                             <li><i class="fa fa-calendar" aria-hidden="true"></i>{{ $vhl->year }}</li>
@@ -97,13 +96,22 @@
                                     </div>
                         
                                     <div class="car-title-m">
-                                        <h6 style="text-transform:capitalize" ><a href="vehical-details.php?vhid=1">  {{ $vhl->manufacturer }}  </a></h6>
-                                        <span class="price">${{ $vhl->price }} /Day</span> 
-                                    </div>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <h6 style="text-transform:capitalize" ><a href="details/{{$vhl->vehicleID }}" >  {{ $vhl->manufacturer }}  </a></h6>
+                                               <br>
+                                                <b style="text-transform:capitalize" > {{ $vhl->make }}</b>  
+                                            </div>
+                                            <div class="col-sm-6">                                              
+                                                <span class="price">${{ $vhl->price }} /Day</span> 
+                                            </div>
 
-                                        <div class="inventory_info_m">
-                                            {{-- <p>{{ $vhl->desc }}</p> --}}
                                         </div>
+                                        
+                                        
+                                    </div>
+                                    
+                                    
                                 </div>
 
                              </div>
@@ -126,24 +134,24 @@
                 <div class="col-lg-3 col-xs-6 col-sm-3">
                 <div class="fun-facts-m">
                     <div class="cell">
-                    <h2><i class="fa fa-calendar" aria-hidden="true"></i>40+</h2>
-                    <p>Years In Business</p>
+                    <h2><i class="fa fa-calendar" aria-hidden="true"></i>{{count($manu)}}+</h2>
+                    <p> Category of Cars </p>
                     </div>
                 </div>
                 </div>
                 <div class="col-lg-3 col-xs-6 col-sm-3">
                 <div class="fun-facts-m">
                     <div class="cell">
-                    <h2><i class="fa fa-car" aria-hidden="true"></i>1200+</h2>
-                    <p>New Cars For Sale</p>
+                    <h2><i class="fa fa-car" aria-hidden="true"></i>{{count($type)}}+</h2>
+                    <p>Type of Cars</p>
                     </div>
                 </div>
                 </div>
                 <div class="col-lg-3 col-xs-6 col-sm-3">
                 <div class="fun-facts-m">
                     <div class="cell">
-                    <h2><i class="fa fa-car" aria-hidden="true"></i>1000+</h2>
-                    <p>Used Cars For Sale</p>
+                    <h2><i class="fa fa-car" aria-hidden="true"></i>  {{count($vhc)}} +</h2>
+                    <p>Used Cars For Rent</p>
                     </div>
                 </div>
                 </div>
@@ -166,42 +174,39 @@
         <!--Testimonial -->
         <section class="section-padding testimonial-section parallex-bg">
             <div class="container div_zindex">
-            <div class="section-header white-text text-center">
-                <h2>Our Satisfied <span>Customers</span></h2>
-            </div>
-            <div class="row">
-                <div id="testimonial-slider">
-        
-        
-                <div class="testimonial-m">
-                    <div class="testimonial-img"> <img src="assets/images/cat-profile.png" alt="" /> </div>
-                    <div class="testimonial-content">
-                    <div class="testimonial-heading">
-                        <h5>Anuj Kumar</h5>
-                    <p>Test Test</p>
-                    </div>
-                </div>
+                <div class="section-header white-text text-center">
+                    <h2>Our Satisfied <span>Customers</span></h2>
                 </div>
                 
-        
-                <div class="testimonial-m">
-                    <div class="testimonial-img"> <img src="assets/images/cat-profile.png" alt="" /> </div>
-                    <div class="testimonial-content">
-                    <div class="testimonial-heading">
-                        <h5>Anuj Kumar</h5>
-                    <p>
-        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nam nibh. Nunc varius facilis</p>
-                    </div>
-                </div>
-                </div>
-                        
-                
+                <div class="row">
+                    <div id="testimonial-slider">
             
+                
+                        <div class="testimonial-m">
+                            @foreach ($test as $item)
+                                
+                                    <div class="testimonial-img"> 
+                                        <img src="{{ asset('images/user.png') }}" alt="user images" />
+                                    </div>
+                                    <div class="testimonial-content">
+                                        <div class="testimonial-heading">
+                                                <h5>{{ $item->UserEmail }}</h5>
+                                            <p>
+                                                {{ $item->Testimonial }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                
+                            @endforeach
+                        </div>
+                                       
+                    </div>
                 </div>
-            </div>
+            
             </div>
             <!-- Dark Overlay-->
             <div class="dark-overlay"></div>
+
         </section>
         <!-- /Testimonial--> 
 

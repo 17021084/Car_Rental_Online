@@ -3,10 +3,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Car Rental Portal</title>
+    <title>User </title>
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="shortcut icon" href="images/favicon-icon/favicon.png">
+    <link rel="shortcut icon" href="{{ asset('images/favicon-icon/favicon.png') }}">
     <title>{{ config('app.name', 'Car Rental') }}</title>
 
     <!-- Scripts -->
@@ -19,11 +19,24 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     
+    {{-- ajax --}}
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+  
+
     <style>
         .user_options li{
           margin-left: -30px;
         }
-    
+        
+         #logo:hover {
+            -ms-transform: scale(1.1); /* IE 9 */
+            -webkit-transform: scale(1.1); /* Safari 3-8 */
+            transform: scale(1.1); 
+        }
+        #logo {
+              transition: transform 1s;
+        }
     
     </style>
 
@@ -33,9 +46,10 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="{{asset('images/logo.png')}}" alt="image">
-                   
+                <a class="navbar-brand" href="{{ url('index') }}">
+                    
+                    <div class="logo"> <a href="{{ route('index') }}"><img id="logo" src="{{ asset('images/logo.png') }}" alt="image"/></a></div>
+          
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -70,17 +84,25 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                    
                                     <ul class="user_options" type ='none'>
-                                        <li> 
-                                            <a class="dropdown-item" href="#"  >
-                                                    Profile Setting                                              
-                                            </a>                                   
-                                        </li>
+                                       
 
                                         <li> 
-                                            <a class="dropdown-item" href="#"  >
-                                                    My Booking                                             
+                                            <a class="dropdown-item" href="{{ route('home') }}"  >
+                                                    My Booking Home                                           
                                             </a>                                   
-                                        </li>                  
+                                        </li>    
+                                        
+                                        <li> 
+                                                <a class="dropdown-item" href="{{ route('profile') }}"  >
+                                                        Profile Setting                                              
+                                                </a>                                   
+                                        </li>
+                                        <li> 
+                                                <a class="dropdown-item" href="{{ route('testimonials') }}"  >
+                                                        My Testimonials                                            
+                                                </a>                                   
+                                        </li>
+                                        
                                         <li> 
                                             <a class="dropdown-item" href="{{ route('logout') }}"
                                                 onclick="event.preventDefault();

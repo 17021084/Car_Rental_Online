@@ -38,17 +38,19 @@
                               <ul>
                   <li>
                     <div class="icon_wrap"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
-                    <div class="contact_info_m">Test Demo test demo																									</div>
+                    <div class="contact_info_m">{{ $infor[0]->Address }}																							</div>
                   </li>
                   <li>
                     <div class="icon_wrap"><i class="fa fa-phone" aria-hidden="true"></i></div>
-                    <div class="contact_info_m"><a href="tel:61-1234-567-90">test@test.com</a></div>
+                    <div class="contact_info_m"><a href="tel:{{ $infor[0]->ContactNo }}">{{ $infor[0]->ContactNo }}	</a></div>
                   </li>
                   <li>
                     <div class="icon_wrap"><i class="fa fa-envelope-o" aria-hidden="true"></i></div>
-                    <div class="contact_info_m"><a href="mailto:contact@exampleurl.com">8585233222</a></div>
+                    <div class="contact_info_m"><a href="mailto:{{ $infor[0]->EmailId }}">{{ $infor[0]->EmailId }}	</a></div>
                   </li>
                 </ul>
+        
+
                       </div>
             </div>
           </div>

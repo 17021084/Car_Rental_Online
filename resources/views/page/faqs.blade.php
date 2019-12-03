@@ -9,7 +9,7 @@
               <h1>FAQs</h1>
             </div>
             <ul class="coustom-breadcrumb">
-              <li><a href="#">Home</a></li>
+              <li><a href="{{ route('index') }}">Home</a></li>
               <li>FAQs</li>
             </ul>
           </div>
@@ -21,7 +21,9 @@
         <div class="container">
           <div class="section-header text-center">      
             <h2>FAQs</h2>
-            <p>																														<span style="color: rgb(0, 0, 0); font-family: &quot;Open Sans&quot;, Arial, sans-serif; font-size: 14px; text-align: justify;">Address------Test &nbsp; &nbsp;dsfdsfds</span> </p>
+            <p>																								
+                {!! $faqs[0]->detail !!}
+            </p>
           </div>
            </div>
       </section>
