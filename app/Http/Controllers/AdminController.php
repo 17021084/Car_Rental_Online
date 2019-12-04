@@ -10,6 +10,7 @@ use App\Testimonial;
 use App\ConTactUsInfor;
 use App\GuestContact;
 use App\ManagePage;
+use DateTime;
 
 class AdminController extends Controller
 {
@@ -43,6 +44,8 @@ class AdminController extends Controller
         
     }
 
+
+  
     // manage page 
     public function pages(){
         $page = ManagePage::get();
@@ -60,20 +63,66 @@ class AdminController extends Controller
     
 
     // manage booking
-    public function booking(){
+    public function booking( Request $request){
              
-        $booking=BookingModel::where('userEmail','erina@gmail')->orderBy('PostingDate','desc')->get(); 
-        // var_dump($booking);
-        // foreach( $booking as $item){
-        //     echo  $item->vehicle()->first()->vehicleID." ". $item->vehicle()->first()->price ." <br> " ;
+        // $booking=BookingModel::where('userEmail','erina@gmail')->orderBy('PostingDate','desc')->get(); 
+        if( $request->has('search') ){
 
-        // }
-
+            $search = "%".$request['search']."%";
+        
+            $booking = BookingModel::orwhere( 'id','LIKE',$search )->orwhere( 'userEmail','LIKE',$search )->orwhere( 'FromDate','LIKE',$search )->
+            orwhere( 'ToDate','LIKE',$search )->orwhere( 'message','LIKE',$search )->orwhere( 'PostingDate','LIKE',$search )->orwhere( 'Status','LIKE',$search )-> orderBy('PostingDate','desc')->paginate(10);  
+          
+            // return $search;
+           
+            
+        }else{
+            // neu ko co formseach gui len
+            $booking=BookingModel::orderBy('PostingDate','desc')->paginate(5); 
+                
+        }
 
         return view('admin.booking',['booking'=>$booking]);
           
+        // var_dump($booking);
+        // foreach( $booking as $item){
+        //     echo  $item->vehicle()->first()->vehicleID." ". $item->vehicle()->first()->price ." <br> " ;
+        // }
+
     }
 
+    //update status of booking
+    public function bookingupdate( Request $request){
+         // 1 accept  0 watiting 2 decline
+       
+       
+         $id= $request['id'];
+         $btn =$request['btn'];
+
+        // $booking = BookingModel::where('id',$id)->get();
+
+      if( $btn=='acc'){ // accept
+          
+        BookingModel::where('id',$id)->update(['Status'=>1]);
+          $booking = BookingModel::where('id',$id)->get();
+       
+       }
+        if($btn =='dec') { // decline
+
+            BookingModel::where('id',$id)->update(['Status'=>2]);
+           $booking = BookingModel::where('id',$id)->get();
+           
+       
+         }       
+
+       return $booking[0];
+  
+
+
+    }
+
+
+    
     //See users
     public function users(Request $request){
         if( $request->has('search') ){
@@ -105,6 +154,9 @@ class AdminController extends Controller
         
     }
 
+
+
+    // show vehicle    
     public function vehicles( Request $request){
         if( $request->has('search') ){
             $search = "%".$request['search']."%";
@@ -192,8 +244,10 @@ class AdminController extends Controller
     /**
      * render view Testimonials and search with 'testimonials ()'
      * update Testimonials with  'testimonials()'
+     * 
      */
 
+     
     public function testimonials(Request $request){
       
         if( $request->has('search') ){
@@ -218,6 +272,7 @@ class AdminController extends Controller
         
     }
 
+
     public function testupdate(Request $request){
         
           $id= $request['id'];
@@ -240,7 +295,7 @@ class AdminController extends Controller
         
     }
         
-    // guest contact admin 
+    // guest contact to admin 
     public function guestcontact(Request $request){
 
         if($request->has('search') ){

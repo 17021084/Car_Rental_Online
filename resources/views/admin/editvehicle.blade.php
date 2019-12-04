@@ -124,7 +124,7 @@
                                 {{-- goi den thang khac  link o formaction --}}
                                 
                                 <button id="delete"  onclick="return confirm('Are you sure you want to delete this Car ?');" class="btn btn-warning"  formaction="{{ route('admin.deletevehicle' , ['id'=>  $vehicle->vehicleID ]) }}">Delete</button>
-
+                                
                                 
                         </form>
 

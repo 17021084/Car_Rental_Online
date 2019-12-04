@@ -34,6 +34,16 @@ class HomeController extends Controller
         return view('users.home',['booking'=>$booking]);
     }
     
+    public function deletebooking($id){
+        // echo $request['id'];
+
+        BookingModel::where('id',$id)->delete();
+        return redirect()->route('home');
+    }
+
+
+
+
     
     public function profile()
     {
