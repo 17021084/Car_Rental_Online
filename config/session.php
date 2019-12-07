@@ -33,7 +33,8 @@ return [
 
     'lifetime' => env('SESSION_LIFETIME', 120),
 
-    'expire_on_close' => false,
+    'expire_on_close' => false, 
+    //  fales là  session ko biến mất khi tắt trình duyệt
 
     /*
     |--------------------------------------------------------------------------

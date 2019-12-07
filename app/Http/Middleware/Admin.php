@@ -4,6 +4,10 @@ namespace App\Http\Middleware;
 
 use Closure;
 
+use Illuminate\Support\Facades\Auth;
+// use Illuminate\Support\Facades\Session;
+use Session;
+
 class Admin
 {
     /**
@@ -15,11 +19,11 @@ class Admin
      */
     public function handle($request, Closure $next)
     {   
-        // 14:25
-        // Auth::user()-> is_admin == 1 bang user co truong admin 
-        if( Auth::guard('admin')->check()   ){
-            return redirect('admin/dashboard');
-
+        
+        //  
+        if(  !Session::has('admin') ){
+            return redirect()->route('admin.login');
+           
         }
 
         return $next($request);

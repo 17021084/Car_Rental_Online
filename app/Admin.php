@@ -2,10 +2,12 @@
 
 namespace App;
 
-use Illuminate\Foundation\Auth\Admin as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 
-class Admin extends Authenticatable
+class Admin extends Model
 {
+    protected $table = "admin";
+    protected $primaryKey = 'id';
  
     /**
      * The attributes that are mass assignable.

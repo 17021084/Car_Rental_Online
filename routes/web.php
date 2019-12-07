@@ -60,13 +60,18 @@ Route::post('/ajaxRequest', 'PageController@ajaxRequestPost');
 
 
 // admin
-// Route::get('admin/login', 'Admin\AuthController@loginForm' );
-// Route::post('admin/login', 'Admin\AuthController@login' )->name('admin.login'); // định danh để thằng form gọi tới
 
 
+Route::get('admin/login', 'Admin\AuthController@loginForm' )->name('admin.login'); 
+Route::post('admin/login', 'Admin\AuthController@postlogin' )->name('admin.postlogin'); 
+Route::get('admin/logout', 'Admin\AuthController@logout' )->name('admin.logout'); 
+
+
+Route::get('admin/', 'AdminController@index' )->name('admin');
 Route::get('admin/home', 'AdminController@index' )->name('admin.home');
 Route::get('admin/vehicles', 'AdminController@vehicles' )->name('admin.vehicles');
 Route::get('admin/booking', 'AdminController@booking' )->name('admin.booking');
+Route::post('admin/bookingupdate', 'AdminController@bookingupdate' )->name('admin.bookingupdate');
 Route::get('admin/users', 'AdminController@users' )->name('admin.users');
 Route::get('admin/pages', 'AdminController@pages' )->name('admin.pages');
 Route::post('admin/postpages', 'AdminController@postpages' )->name('admin.postpages');
@@ -83,9 +88,11 @@ Route::get('admin/guestcontact', 'AdminController@guestcontact' )->name('admin.g
 
 
 
+
 // users 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/deletebooking/{id}', 'HomeController@deletebooking')->name('deletebooking');
 Route::get('/home/profile', 'HomeController@profile')->name('profile');
 Route::post('/home/updateprofile', 'HomeController@updateprofile')->name('updateprofile');
 Route::get('/home/testimonials', 'HomeController@testimonials')->name('testimonials');
