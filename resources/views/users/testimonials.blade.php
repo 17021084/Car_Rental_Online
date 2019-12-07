@@ -42,11 +42,23 @@
                    @foreach ($test as $item)
                         <div class="col-xl-12">
                                 <div class="test" >
+                                    <h6> 
+                                            <b>Content</b> 
+                                        @if ($item->status ==1 )
+                                        <span class="badge badge-success">Showing </span>
+                                        @else
+                                        
+                                        <span class="badge badge-danger"> not Showing </span>
+                                        @endif
+                                    </h6>
+                                    
                                     <p >
-                                        <b>{{ $item->Testimonial }}</b>
+                                        
+                                        {{ $item->Testimonial }}
                                                 
                                     </p>
                                     <i>Post at : {{ $item->PostingDate }}</i>
+
 
                                 </div>
                         </div>

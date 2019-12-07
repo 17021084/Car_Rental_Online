@@ -189,8 +189,8 @@ class PageController extends Controller
             
             BookingModel::insertGetId(['userEmail'=>$email,'VehicleId'=>$vehicleID,
             'FromDate'=>$fromdate,'ToDate'=>$todate,'message'=>$message, 'Status'=>0]);
-
-            return "booking request  from date  : $fromdate  is success  !! its is in 'not confirmed yet' ";
+            $message = "booking request  from : $fromdate to $todate is waiting status ";
+            return view( 'page.response',['message'=>$message]);
             
        } else{ 
            //có nhiều người đã  book xe này
@@ -207,8 +207,9 @@ class PageController extends Controller
                     // nếu trong số xe có cùng id và fromdate(booking đang gửi lên) < toDate (của cái đã có)
                     // và  nó đã đc confirm rồi  tức là Status =1 
                     // =>> booking ko dc
-                
-                    return "booking request  from date  : $fromdate  fail because this vehicle had been rented " ;
+
+                    $message="booking request from  : $fromdate to $todate 'Fail' because  vehicle is being rented " ;
+                    return view( 'page.response',['message'=>$message]);
                     
                  
                 }
@@ -221,8 +222,8 @@ class PageController extends Controller
 
         BookingModel::insertGetId(['userEmail'=>$email,'VehicleId'=>$vehicleID,
         'FromDate'=>$fromdate,'ToDate'=>$todate,'message'=>$message, 'Status'=>0]);
-
-        return " you booking same vehicle of another booking  but their booking was not confirmed yet  or cancelled  So  booking request  from date  : $fromdate  is success !! it is in 'not comfirm yet' ";
+             $message="booking request  from : $fromdate to $todate is waiting status ";
+             return view( 'page.response',['message'=>$message]);
        }
         
 

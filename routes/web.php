@@ -34,28 +34,9 @@ Route::get('/details/details/{id}'   , 'PageController@redetails'   )->name('/de
 //booking
 Route::post('/booking'   , 'PageController@booking'   )->name('booking');
 
-
-
-
-
-
-// ================================
-//test Post form
-Route::get('testform', function () {
-    return view('form');
-})->name('test');
-Route::post('post', 'PageController@post')->name('post');
-//test Ajax
-Route::get('ajax', function () {
-    return view('ajax');
-})->name('ajax');
-
-// Route::post('ajax', 'PageController@ajax')->name('ajax');
-// Route::post('/ajax/{id}', 'PageController@ajax')->name('postajax');
-
-Route::post('/ajaxRequest', 'PageController@ajaxRequestPost');
-
-// ================================
+Route::get('/response'   , function(){
+    return view('page.response');
+}   )->name('response');
 
 
 

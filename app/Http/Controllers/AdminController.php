@@ -21,12 +21,28 @@ class AdminController extends Controller
         $this->middleware('adminAuth');
     }
 
-    // trả về trang home admin khi đăng nhập thành công
+    // admin daskboard 
    
     public function index(){
-       return view('admin.adminmaster');
+
+        $booking =count(BookingModel::get());
+        $user=count(User::get());
+       
+        $test=count(Testimonial::get());
+        $page =count(ManagePage::get());
+        $vehicle = count(VehiclesModel::get());
+        $guest =count(GuestContact::get());
+
+       return view('admin.dashboard',
+        [ 'user'=>$user, 'test' => $test ,'page'=>$page,
+         'vehicle'=>$vehicle ,'guest'=>$guest ,   'booking'=>$booking  
+        
+        ]
+        );
         
     }
+
+
     // manage contact of page
     public function contact(){
      
