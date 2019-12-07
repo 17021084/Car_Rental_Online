@@ -237,57 +237,6 @@ class PageController extends Controller
 
 
 
-    // =========
-    //test form
-    public function post(Request $req)
-    {
-        echo $req->text;
-        echo $req->radio;
-
-    }
-    
-
-
-    //test ajax Request $req
-    public function ajax( $id )
-    {
-        //   $num=  $req->number;
-
-       return response()->json(['number'=>12]) ;
-
-    }
-    public function testajax()
-    {
-        //   $num=  $req->number;
-
-
-
-       return response()->json(['number'=>12]) ;
-
-    }
-    
-    // =====
-  
-
-   
-
-    public function ajaxRequestPost(Request $request)
-
-    {
-
-        $input = $request->all();
-
-        return response()->json(['success'=>'Got Simple Ajax Request.',
-        'name' => $request['name'],
-        'password' => $request['password'],
-        'email' => $request['email'],
-        
-        
-        ]);
-
-    }
-    
-
 
 
 }

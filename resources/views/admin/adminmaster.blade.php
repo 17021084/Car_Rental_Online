@@ -88,8 +88,16 @@
                             <li class="nav-item">
                                     <a class="nav-link" href="{{ route('admin.addvehicle') }}">Add Vehicles</a>
                             </li>
+                           
+                            <li style="    " class="nav-item">
+                                    <a name="logout" id="logout" class="btn btn-primary" href="{{ route('admin.logout') }}" role="button">
+                                        <i class="fa fa-user-circle-o" aria-hidden="true"></i> {{ Session::get('admin') }}
+                                        <i class="fa fa-sign-out" aria-hidden="true"></i>
+                                    </a>
+                            </li>
                             
-            
+                           
+                            
             
                         </ul>
             

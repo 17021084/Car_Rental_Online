@@ -35,16 +35,20 @@
                                                 <b>To Date :</b>  {{ $item->ToDate }}  <br>
                                                 <b>Duration :</b> 
                                                 
-                                                <?php  $FromDate = date_create($item->FromDate); 
-                                                $ToDate = date_create($item->ToDate); 
-                                                $interval = date_diff($FromDate, $ToDate);
-                                                echo $interval->format('%R%a days'); 
+                                                <?php  
+                                              
+
+                                                $FromDate =  DateTime::createFromFormat('d/m/Y', $item->FromDate) ; 
+										        $ToDate =  DateTime::createFromFormat('d/m/Y', $item->ToDate) ; 
+										        $interval = date_diff($FromDate, $ToDate);
+										        echo $interval->format('%R%a days'); 
                                                 ?>
                                             
                                                 <br>
                                                 <span class="badge badge-dark badge-lg"> <h6>price</h6> </span>  <b> 
                                                     <?php 
                                                     echo $interval->format('%a')* $item->vehicle()->first()->price ;   
+                                                    
                                                     ?>
                                                                                                                         
                                                 </b>   

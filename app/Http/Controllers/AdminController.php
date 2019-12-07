@@ -15,11 +15,11 @@ use DateTime;
 class AdminController extends Controller
 {
 
-    // public function __construct()
-    // {
-    //     // tất cả các route gọi controller phải qua middleware
-    //     $this->middleware('auth:admin');
-    // }
+    public function __construct()
+    {
+        // tất cả các route gọi controller phải qua middleware
+        $this->middleware('adminAuth');
+    }
 
     // trả về trang home admin khi đăng nhập thành công
    
