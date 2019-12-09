@@ -71,10 +71,8 @@ class PageController extends Controller
         // kieeur mang
         // $car = json_decode($vehicle,true);
         // echo($car[0]['price']);
-
         // json
         // echo($vehicle[0]->year);
-
         // relevant car
         // $year = $vehicle[0]->year;
         // $fuel =$vehicle[0]->fuel;
@@ -83,6 +81,38 @@ class PageController extends Controller
         $similar_vehicle = VehiclesModel::where( "year",$vehicle[0]->year )->orwhere( 'fuel',$vehicle[0]->fuel)->orwhere('seats',$vehicle[0]->seats)->limit(4)->get();
 
         return view('page.details', ["vehicle" => $vehicle , 'similar'=> $similar_vehicle ] );
+
+    }
+
+    public function search(Request $request ){
+
+        $manufacturer=VehiclesModel::select('manufacturer')->groupby('manufacturer')->get();
+        $category=VehiclesModel::select('make')->groupby('make')->get();
+        $fuel=VehiclesModel::select('fuel')->groupby('fuel')->get();
+        $transmission=VehiclesModel::select('transmission')->groupby('transmission')->get();
+        $type=VehiclesModel::select('type')->groupby('type')->get();
+        $seats=VehiclesModel::select('seats')->groupby('seats')->get();
+
+        if( $request->has('search') ){
+            $search = "%".$request['search']."%";
+            $vehicles = VehiclesModel::orwhere( 'vehicleID','LIKE',$search )->orwhere( 'manufacturer','LIKE',$search )->orwhere( 'make','LIKE',$search )->
+            orwhere( 'price','LIKE',$search )->orwhere( 'year','LIKE',$search )->orwhere( 'title_status','LIKE',$search )->
+            orwhere( 'condition','LIKE',$search )->orwhere( 'cylinders','LIKE',$search )->orwhere( 'fuel','LIKE',$search )->
+            orwhere( 'odometer','LIKE',$search )->orwhere( 'drive','LIKE',$search )->orwhere( 'size','LIKE',$search )->
+            orwhere( 'seats','LIKE',$search )->orwhere( 'type','LIKE',$search )->orwhere( 'transmission','LIKE',$search )->
+            orwhere( 'paint_color','LIKE',$search )-> paginate(10);  
+           
+        }else{
+            // neu ko co formseach gui len
+             $vehicles = VehiclesModel::paginate(10);     
+        }
+
+        return view('page.carlisting',['manufacturer'=>$manufacturer ,
+        'category'=> $category , 'fuel'=>$fuel ,'transmission'=>$transmission  , 'type'=> $type,
+        'seats'=>$seats , 'vehicles'=>$vehicles
+        ]);
+
+
 
     }
 

@@ -33,10 +33,8 @@ Route::get('/details/details/{id}'   , 'PageController@redetails'   )->name('/de
 
 //booking
 Route::post('/booking'   , 'PageController@booking'   )->name('booking');
-
-Route::get('/response'   , function(){
-    return view('page.response');
-}   )->name('response');
+//search
+Route::get('/search'   , 'PageController@search'   )->name('search');
 
 
 

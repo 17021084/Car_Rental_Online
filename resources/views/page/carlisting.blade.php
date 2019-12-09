@@ -125,11 +125,11 @@
 
             <div class="form-group select">
                <select id="type" class="form-control" name="type">
-                 
+                  
                           @foreach ($type as $item)
                             @if ($item->type=="")
                  
-                               <option value=""  >Select Type Vehicle </option>
+                               <option value=""  > Select Type Vehicle </option>
                             @else
                               <option  style="text-transform: capitalize;" value="{{ $item->type }}">{{ $item->type }}</option>
                                 
