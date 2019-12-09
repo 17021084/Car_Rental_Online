@@ -1,25 +1,5 @@
 <footer>
-    {{-- <div class="footer-top">
-      <div class="container">
-        <div class="row">
-        
-          <div class="col-md-6">
-           
-
-          </div>
-    
-          {{-- <div class="col-md-3 col-sm-6">
-            <h6>Subscribe Newsletter</h6>
-            <div class="newsletter-form">
-              <form method="post">
-                <div class="form-group">
-                  <input type="email" name="subscriberemail" class="form-control newsletter-input" required placeholder="Enter Email Address" />
-                </div>
-                <button type="submit" name="emailsubscibe" class="btn btn-block">Subscribe <span class="angle_arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></button>
-              </form>
-              <p class="subscribed-text">*We send great deals and latest auto news to our subscribed users very week.</p>
-            </div>
-          </div> --}}
+   
 
         </div>
       </div>
@@ -47,9 +27,9 @@
             {{--  sửa đoạn này  --}}
               <h6 class="copy-right">About Us</h6> 
               
-                   <a style=" padding-right :10px;" class="copy-right" href="privacy">Privacy</a>
-                   <a style=" padding-right :10px; " class="copy-right" href="/term">Terms of use</a>
-                   <a style=" padding-right :10px;" class="copy-right" href="admin/">Admin Login</a>
+                   <a style=" padding-right :10px;" class="copy-right" href="{{ route('privacy') }}">Privacy</a>
+                   <a style=" padding-right :10px; " class="copy-right" href="{{ route('term') }}">Terms of use</a>
+                   <a style=" padding-right :10px;" class="copy-right" href="{{ route('admin.home') }}">Admin Login</a>
               
             
           </div>

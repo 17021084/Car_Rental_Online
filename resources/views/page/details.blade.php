@@ -126,7 +126,7 @@
                      
                     </tr>
                     <tr>
-                      <td scope="row"> <b>Drive (Dẫn động cầu trước , cầu sau , 2 cầu) </b> </td>
+                      <td scope="row"> <b>Drive </b> </td>
                       <td style="text-transform:capitalize"> {{ $vehicle[0]->drive }} </td>
                      
                     </tr>
