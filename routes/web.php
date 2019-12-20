@@ -23,6 +23,7 @@ Route::get('/term'       , 'PageController@term'      )->name('term');
 Route::get('/privacy'    , 'PageController@privacy'   )->name('privacy');
 Route::get('/faqs'       , 'PageController@faqs'      )->name('faqs');
 Route::get('/contactus'  , 'PageController@contactus' )->name('contactus');
+Route::post('/postcontactus'  , 'PageController@postcontactus' )->name('postcontactus');
 
 
 Route::post('/pageinfor'  , 'PageController@pageinfor' )->name('pageinfor');

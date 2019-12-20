@@ -7,6 +7,7 @@ use App\DB;
 use Illuminate\Http\Request;
 use App\VehiclesModel;
 use App\ConTactUsInfor;
+use App\GuestContact;
 use App\ManagePage;
 use App\Testimonial;
 use DateTime;
@@ -157,6 +158,22 @@ class PageController extends Controller
         $infor =ConTactUsInfor::get();
         return view('page.contactus',['infor'=>$infor]);
     }
+
+    public function postcontactus(Request $request)
+    {
+        $fullname =$request['fullname'];
+        $email = $request['email'];
+        $contactno =$request['contactno'];
+        $message =$request['message'];
+         
+        GuestContact::insertGetId( [  'name' => $fullname, 'EmailId' =>$email , 'ContactNumber' => $contactno , 'Message'=>$message] );
+       return redirect()->route('contactus');
+        
+
+    }
+
+
+    
     //render infor in header
     public function pageinfor()
     {

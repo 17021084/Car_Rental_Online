@@ -9,7 +9,9 @@
             <div class="col-md-6">
               <h3>Get in touch using the form below</h3>
                         <div class="contact_form gray-bg">
-                <form  method="post">
+                
+                <form  method="post" action="{{ route('postcontactus') }}">
+                  @csrf
                   <div class="form-group">
                     <label class="control-label">Full Name <span>*</span></label>
                     <input type="text" name="fullname" class="form-control white_bg" id="fullname" required>
@@ -30,6 +32,7 @@
                     <button class="btn" type="submit" name="send" type="submit">Send Message <span class="angle_arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></button>
                   </div>
                 </form>
+
               </div>
             </div>
             <div class="col-md-6">
