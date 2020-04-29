@@ -1,7 +1,7 @@
 # CAR RENTAL 
 
 This is web's application. It provide Car Rental's services. 
-##### Fuction
+##### Function
 * Reserve Cars 
 * Manage Cars
 * Manage Web
