@@ -1,5 +1,5 @@
 # CAR RENTAL 
-<hr>
+
 This is web's application. It provide Car Rental's services. 
 ##### Fuction
 * Reserve Cars 
@@ -10,7 +10,7 @@ This is web's application. It provide Car Rental's services.
 [Demo Function Video](https://youtu.be/-Zd2UWnuaNE)
 
 ## Installation
-<hr>
+
 
 Make sure that you installed PHP7.2.24 and Composer 1.6.3 and npm <br>
 
@@ -35,12 +35,14 @@ Run composer install
 
 
 ## Usage
-<hr>
-1. Start mysql server
-2. Run 
+
+* Start mysql server
+* Run 
+
 ```bash
 Run php artisan serve
 ```
+
 By default, The WebServer will deploy on `PORT: 8000`. <br>
-Open browser and access : `localhost:8000` 
+Open browser and access : `localhost:8000` .
 
