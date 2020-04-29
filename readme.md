@@ -7,7 +7,7 @@ This is web's application. It provide Car Rental's services.
 * Manage Web
 * ...
 
-[Demo Function Video](https://youtu.be/-Zd2UWnuaNE)
+[Application demo Video](https://youtu.be/-Zd2UWnuaNE)
 
 ## Installation
 
