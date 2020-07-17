@@ -30,9 +30,11 @@ then inport `carrental.sql` into database.
 
 To download module 
 ```bash
-Run composer install 
+composer install 
 ```
-
+```bash
+npm install
+```
 
 ## Usage
 
@@ -40,7 +42,7 @@ Run composer install
 * Run 
 
 ```bash
-Run php artisan serve
+php artisan serve
 ```
 
 By default, The WebServer will deploy on `PORT: 8000`. <br>
