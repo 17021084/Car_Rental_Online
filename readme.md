@@ -28,6 +28,8 @@ then inport `carrental.sql` into database.
 
 * By default, the username is root and password is also root. (This is for Lamp)
 
+* Generate key  ``` php artisan key:generate ```
+
 To download module 
 ```bash
 composer install 
